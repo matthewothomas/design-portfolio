@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matthew Thomas - Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years building accessible, scalable systems.">
+    <title>Component Library Consolidation — Matthew Thomas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+            background: #fafafa;
+            color: #1d1d1f;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
+        }
+
+        .case-hero {
+            padding: 140px 32px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .case-tag {
+            font-size: 13px;
+            padding: 8px 14px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+
+        .case-title {
+            font-size: clamp(40px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .case-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: #6e6e73;
+            font-weight: 400;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .case-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 32px;
+        }
+
+        .case-image-inner {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image-inner::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+        }
+
+        .case-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 32px 100px;
+        }
+
+        .case-section {
+            margin-bottom: 64px;
+        }
+
+        .case-section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6e6e73;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .case-section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .case-section p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .case-section ul {
+            margin: 20px 0;
+            padding-left: 24px;
+        }
+
+        .case-section li {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0071e3;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 15px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .next-project {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .next-project p {
+            font-size: 15px;
+            color: #6e6e73;
+            margin-bottom: 16px;
+        }
+
+        .next-project h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .next-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: gap 0.2s;
+        }
+
+        .next-link:hover {
+            gap: 12px;
+        }
+
+        .next-link::after {
+            content: '→';
+            font-size: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 32px;
+            color: #6e6e73;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-value {
+                font-size: 36px;
+            }
+
+            .next-project {
+                padding: 32px 24px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Matthew Thomas</a>
+            <ul class="nav-links">
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero fade-in">
+        <a href="index.html#work" class="back-link">Back to Work</a>
+        <div class="case-meta" style="margin-top: 32px;">
+            <span class="case-tag">Bupa</span>
+            <span class="case-tag">2022–Present</span>
+            <span class="case-tag">Design Systems</span>
+        </div>
+        <h1 class="case-title">Component Library Consolidation</h1>
+        <p class="case-subtitle">Unifying 4 fragmented design libraries into a single source of truth for 50 designers across web, iOS, Android, and email platforms.</p>
+    </section>
+
+    <!-- Hero Image -->
+    <div class="case-image">
+        <div class="case-image-inner">
+            Component Library
+        </div>
+    </div>
+
+    <!-- Case Study Content -->
+    <div class="case-content">
+        <!-- Overview -->
+        <section class="case-section">
+            <span class="case-section-title">Overview</span>
+            <h2>The Challenge</h2>
+            <p>
+                When I joined Bupa, the design organisation was working across 4 separate component libraries. Each platform—web, iOS, Android, and email—had evolved its own set of components, often with overlapping functionality but inconsistent implementation.
+            </p>
+            <p>
+                Designers were duplicating work. Development teams received different specs for the same patterns. Accessibility was inconsistent. And onboarding new designers meant teaching them 4 different systems.
+            </p>
+        </section>
+
+        <!-- Problem -->
+        <section class="case-section">
+            <span class="case-section-title">The Problem</span>
+            <h2>200+ Components, No Single Source of Truth</h2>
+            <p>
+                The numbers told the story:
+            </p>
+            <ul>
+                <li><strong>200+ components</strong> spread across 4 libraries</li>
+                <li><strong>75% duplication</strong> — the same patterns rebuilt multiple times</li>
+                <li><strong>50 designers</strong> across 8 squads with no shared language</li>
+                <li><strong>Inconsistent accessibility</strong> — some components met WCAG, others didn't</li>
+                <li><strong>No governance</strong> — anyone could add components without review</li>
+            </ul>
+        </section>
+
+        <!-- Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">200+</div>
+                <div class="metric-label">Components (before)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">50</div>
+                <div class="metric-label">Components (after)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">75%</div>
+                <div class="metric-label">Duplication eliminated</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">50</div>
+                <div class="metric-label">Designers supported</div>
+            </div>
+        </div>
+
+        <!-- Approach -->
+        <section class="case-section">
+            <span class="case-section-title">Approach</span>
+            <h2>Audit, Consolidate, Govern</h2>
+            <p>
+                The solution wasn't just about reducing component count—it was about creating a sustainable system that would prevent fragmentation from happening again.
+            </p>
+
+            <div class="highlight-box">
+                <h3>1. Component Audit</h3>
+                <p style="margin-bottom: 0;">
+                    I mapped every component across all 4 libraries, identifying overlaps, inconsistencies, and gaps. This revealed that many "platform-specific" components were actually the same pattern with different names.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>2. Core Component Definition</h3>
+                <p style="margin-bottom: 0;">
+                    Working with development, I defined 50 core components that would serve as the foundation. Each component was designed to work across all platforms with appropriate adaptations, rather than platform-specific versions.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>3. Contribution Model</h3>
+                <p style="margin-bottom: 0;">
+                    I co-created a governance framework with clear approval flows. New components now require review, accessibility checks, and cross-platform consideration before being added to the system.
+                </p>
+            </div>
+        </section>
+
+        <!-- Development Collaboration -->
+        <section class="case-section">
+            <span class="case-section-title">Collaboration</span>
+            <h2>Working with Development</h2>
+            <p>
+                Consolidation only works if design and development are aligned. I established a weekly Design System sync with the development team to ensure:
+            </p>
+            <ul>
+                <li>Component specs matched technical feasibility</li>
+                <li>React and React Native implementations stayed aligned</li>
+                <li>Accessibility requirements were clear and testable</li>
+                <li>Changes were communicated before they landed</li>
+            </ul>
+            <p>
+                This ongoing collaboration meant fewer surprises, faster implementation, and a shared ownership of the system.
+            </p>
+        </section>
+
+        <!-- Outcome -->
+        <section class="case-section">
+            <span class="case-section-title">Outcome</span>
+            <h2>A System Teams Can Rely On</h2>
+            <p>
+                The consolidated library became the single source of truth for all product design at Bupa. Results after 18 months:
+            </p>
+            <ul>
+                <li><strong>50 core components</strong> serving all platforms</li>
+                <li><strong>15+ contributions</strong> from 6 product teams through the new governance model</li>
+                <li><strong>WCAG 2.2 compliance</strong> built into every component</li>
+                <li><strong>Faster onboarding</strong> — new designers learn one system, not four</li>
+                <li><strong>Reduced design debt</strong> — teams spend time on product problems, not rebuilding patterns</li>
+            </ul>
+        </section>
+
+        <!-- Next Project -->
+        <div class="next-project">
+            <p>Next Case Study</p>
+            <h3>Token System Scaling</h3>
+            <a href="case-study-tokens.html" class="next-link">View Case Study</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Matthew Thomas. All rights reserved. | Crouch End, London</p>
+    </footer>
+</body>
+</html>

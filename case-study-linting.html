@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matthew Thomas - Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years building accessible, scalable systems.">
+    <title>Figma Linting Plugin — Matthew Thomas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+            background: #fafafa;
+            color: #1d1d1f;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
+        }
+
+        .case-hero {
+            padding: 140px 32px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .case-tag {
+            font-size: 13px;
+            padding: 8px 14px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+
+        .case-title {
+            font-size: clamp(40px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .case-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: #6e6e73;
+            font-weight: 400;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .case-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 32px;
+        }
+
+        .case-image-inner {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image-inner::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+        }
+
+        .case-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 32px 100px;
+        }
+
+        .case-section {
+            margin-bottom: 64px;
+        }
+
+        .case-section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6e6e73;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .case-section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .case-section p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .case-section ul {
+            margin: 20px 0;
+            padding-left: 24px;
+        }
+
+        .case-section li {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #38b87c;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 15px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .lint-example {
+            background: #1d1d1f;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .lint-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lint-item:last-child {
+            border-bottom: none;
+        }
+
+        .lint-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .lint-icon.error {
+            background: #ff453a;
+            color: white;
+        }
+
+        .lint-icon.warning {
+            background: #ff9f0a;
+            color: white;
+        }
+
+        .lint-text {
+            color: #fff;
+            font-size: 14px;
+            font-family: "SF Mono", Monaco, "Courier New", monospace;
+        }
+
+        .lint-value {
+            color: #ff453a;
+            background: rgba(255, 69, 58, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .lint-suggestion {
+            color: #30d158;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .feature-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #6e6e73;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .callout-box {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 18px;
+            padding: 32px;
+            margin: 40px 0;
+            color: white;
+        }
+
+        .callout-box h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .callout-box p {
+            font-size: 16px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .next-project {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .next-project p {
+            font-size: 15px;
+            color: #6e6e73;
+            margin-bottom: 16px;
+        }
+
+        .next-project h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .next-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: gap 0.2s;
+        }
+
+        .next-link:hover {
+            gap: 12px;
+        }
+
+        .next-link::after {
+            content: '→';
+            font-size: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 32px;
+            color: #6e6e73;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-value {
+                font-size: 36px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .next-project {
+                padding: 32px 24px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Matthew Thomas</a>
+            <ul class="nav-links">
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero fade-in">
+        <a href="index.html#work" class="back-link">Back to Work</a>
+        <div class="case-meta" style="margin-top: 32px;">
+            <span class="case-tag">Bupa</span>
+            <span class="case-tag">2024</span>
+            <span class="case-tag">Figma Plugin</span>
+        </div>
+        <h1 class="case-title">Figma Linting Plugin</h1>
+        <p class="case-subtitle">A custom plugin that automatically detects raw values in designs, catching 100+ issues monthly and improving design quality across the team.</p>
+    </section>
+
+    <!-- Hero Image -->
+    <div class="case-image">
+        <div class="case-image-inner">
+            Design Linting
+        </div>
+    </div>
+
+    <!-- Case Study Content -->
+    <div class="case-content">
+        <!-- Overview -->
+        <section class="case-section">
+            <span class="case-section-title">Overview</span>
+            <h2>The Challenge</h2>
+            <p>
+                With 50 designers across 8 squads, maintaining consistency is difficult. Even with a robust token system, designers sometimes reach for raw values—a specific hex colour instead of a token, a pixel value instead of a spacing token. These small deviations add up, creating drift between design and implementation.
+            </p>
+            <p>
+                Design reviews can catch some issues, but they're time-consuming and inconsistent. We needed automated quality control that could run before handoff.
+            </p>
+        </section>
+
+        <!-- Problem -->
+        <section class="case-section">
+            <span class="case-section-title">The Problem</span>
+            <h2>Raw Values Slipping Through</h2>
+            <p>
+                The issues we were seeing:
+            </p>
+            <ul>
+                <li><strong>Hard-coded colours</strong> — hex values instead of colour tokens</li>
+                <li><strong>Custom spacing</strong> — arbitrary pixel values instead of spacing scale</li>
+                <li><strong>Non-standard typography</strong> — font sizes outside the type scale</li>
+                <li><strong>Detached components</strong> — instances disconnected from the library</li>
+                <li><strong>Inconsistent handoffs</strong> — developers receiving specs with raw values</li>
+            </ul>
+        </section>
+
+        <!-- Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">100+</div>
+                <div class="metric-label">Issues caught monthly</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">45+</div>
+                <div class="metric-label">Designers using it</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">4</div>
+                <div class="metric-label">Lint categories</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Pre</div>
+                <div class="metric-label">Handoff checks</div>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <section class="case-section">
+            <span class="case-section-title">Solution</span>
+            <h2>Automated Design Linting</h2>
+            <p>
+                I built a Figma plugin that scans designs and flags any values that don't match our token system. It works like a code linter, but for design files:
+            </p>
+
+            <div class="lint-example">
+                <div class="lint-item">
+                    <div class="lint-icon error">!</div>
+                    <div class="lint-text">
+                        Fill colour <span class="lint-value">#0066CC</span> → use <span class="lint-suggestion">color.action.primary</span>
+                    </div>
+                </div>
+                <div class="lint-item">
+                    <div class="lint-icon warning">!</div>
+                    <div class="lint-text">
+                        Spacing <span class="lint-value">18px</span> → use <span class="lint-suggestion">spacing.16</span> or <span class="lint-suggestion">spacing.20</span>
+                    </div>
+                </div>
+                <div class="lint-item">
+                    <div class="lint-icon error">!</div>
+                    <div class="lint-text">
+                        Font size <span class="lint-value">19px</span> → use <span class="lint-suggestion">font.size.body</span> (17px)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="case-section">
+            <span class="case-section-title">Features</span>
+            <h2>What It Checks</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Colour Tokens</h4>
+                    <p>Detects any fill or stroke that doesn't map to a token in our colour system.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Spacing Values</h4>
+                    <p>Flags padding, margins, and gaps that don't match our spacing scale.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Typography</h4>
+                    <p>Checks font sizes, weights, and line heights against the type scale.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Component Usage</h4>
+                    <p>Identifies detached instances and non-library components.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow -->
+        <section class="case-section">
+            <span class="case-section-title">Workflow</span>
+            <h2>Integrated Into Design Process</h2>
+            <p>
+                The plugin fits naturally into the design workflow:
+            </p>
+
+            <div class="highlight-box">
+                <h3>During Design</h3>
+                <p style="margin-bottom: 0;">
+                    Designers can run the linter at any point to check their work. Quick feedback helps catch issues early when they're easy to fix.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Before Handoff</h3>
+                <p style="margin-bottom: 0;">
+                    A lint check before handoff ensures developers receive clean specs. No more back-and-forth about which token a colour should be.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Design Reviews</h3>
+                <p style="margin-bottom: 0;">
+                    Reviewers can run the linter to quickly verify token compliance, freeing up review time for more substantive feedback.
+                </p>
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section class="case-section">
+            <span class="case-section-title">Impact</span>
+            <h2>Catching Issues Before They Ship</h2>
+            <p>
+                The plugin has become part of our standard workflow:
+            </p>
+            <ul>
+                <li><strong>100+ raw values caught monthly</strong> that would have made it to development</li>
+                <li><strong>Faster handoffs</strong> — developers trust the specs they receive</li>
+                <li><strong>Educational tool</strong> — designers learn the token system through feedback</li>
+                <li><strong>Reduced review burden</strong> — automated checks handle the mechanical stuff</li>
+                <li><strong>Better consistency</strong> — designs align with the system from the start</li>
+            </ul>
+        </section>
+
+        <!-- Future -->
+        <section class="case-section">
+            <span class="case-section-title">Looking Ahead</span>
+            <h2>Native Figma Linting</h2>
+            
+            <div class="callout-box">
+                <h3>Coming Soon: Figma's Native Variables Linting</h3>
+                <p>
+                    Figma is building native variable linting features. When this ships, it will supersede our custom plugin—which is exactly the outcome we want. The plugin solved an immediate need, and now the platform is catching up. That's how good tooling should work.
+                </p>
+            </div>
+        </section>
+
+        <!-- Next Project -->
+        <div class="next-project">
+            <p>Back to</p>
+            <h3>All Projects</h3>
+            <a href="index.html#work" class="next-link">View Work</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Matthew Thomas. All rights reserved. | Crouch End, London</p>
+    </footer>
+</body>
+</html>

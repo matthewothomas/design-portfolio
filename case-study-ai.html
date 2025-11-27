@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="AI Documentation Automation - How I built AI agents to auto-generate Zeroheight component documentation">
     <title>AI Documentation Automation — Matthew Thomas</title>
     <style>
         * {
@@ -85,518 +85,459 @@
             font-size: 18px;
         }
 
-        .case-hero {
-            padding: 140px 32px 80px;
-            max-width: 900px;
+        .case-study {
+            max-width: 800px;
             margin: 0 auto;
+            padding: 120px 32px 80px;
         }
 
-        .case-meta {
+        .case-study-header {
+            margin-bottom: 48px;
+        }
+
+        .case-study-meta {
             display: flex;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
-        .case-tag {
+        .case-study-tag {
             font-size: 13px;
-            padding: 8px 14px;
-            background: #f5f5f7;
-            border-radius: 12px;
-            color: #1d1d1f;
+            padding: 8px 16px;
+            background: #4facfe;
+            color: white;
+            border-radius: 100px;
             font-weight: 500;
         }
 
-        .case-title {
-            font-size: clamp(40px, 6vw, 56px);
+        .case-study-title {
+            font-size: clamp(36px, 6vw, 56px);
             font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.1;
         }
 
-        .case-subtitle {
-            font-size: clamp(18px, 2.5vw, 24px);
+        .case-study-subtitle {
+            font-size: 20px;
             color: #6e6e73;
-            font-weight: 400;
-            max-width: 700px;
-            line-height: 1.5;
+            font-weight: 500;
         }
 
-        .case-image {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto 80px;
-            padding: 0 32px;
-        }
-
-        .case-image-inner {
+        .hero-image {
             width: 100%;
             aspect-ratio: 16 / 9;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             border-radius: 24px;
+            margin-bottom: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: clamp(24px, 4vw, 48px);
-            font-weight: 600;
-            position: relative;
             overflow: hidden;
         }
 
-        .case-image-inner::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(255, 255, 255, 0.03) 2px,
-                rgba(255, 255, 255, 0.03) 4px
-            );
-        }
-
-        .case-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 32px 100px;
-        }
-
-        .case-section {
-            margin-bottom: 64px;
-        }
-
-        .case-section-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #6e6e73;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .case-section h2 {
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .case-section p {
-            font-size: 17px;
-            line-height: 1.7;
-            color: #1d1d1f;
-            margin-bottom: 20px;
-        }
-
-        .case-section ul {
-            margin: 20px 0;
-            padding-left: 24px;
-        }
-
-        .case-section li {
-            font-size: 17px;
-            line-height: 1.7;
-            color: #1d1d1f;
-            margin-bottom: 12px;
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin: 40px 0;
+            margin-bottom: 48px;
         }
 
         .metric-card {
             background: white;
             border-radius: 18px;
-            padding: 32px;
+            padding: 28px;
             text-align: center;
         }
 
         .metric-value {
-            font-size: 48px;
+            font-size: 40px;
             font-weight: 700;
-            color: #00b4d8;
-            letter-spacing: -0.03em;
+            color: #4facfe;
             margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 15px;
-            color: #6e6e73;
-            font-weight: 500;
-        }
-
-        .highlight-box {
-            background: white;
-            border-radius: 18px;
-            padding: 32px;
-            margin: 32px 0;
-        }
-
-        .highlight-box h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 16px;
             letter-spacing: -0.02em;
         }
 
-        .workflow-step {
-            display: flex;
-            gap: 20px;
-            margin: 24px 0;
-            align-items: flex-start;
+        .metric-label {
+            font-size: 14px;
+            color: #6e6e73;
+            font-weight: 500;
         }
 
-        .workflow-number {
-            width: 32px;
-            height: 32px;
+        .content-section {
+            margin-bottom: 48px;
+        }
+
+        .content-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .content-section p {
+            font-size: 17px;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            font-size: 17px;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+            border-left: 4px solid #4facfe;
+            padding: 24px 28px;
+            border-radius: 0 16px 16px 0;
+            margin: 32px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: #1d1d1f;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .code-comment {
+            color: #6e6e73;
+        }
+
+        .code-string {
+            color: #4facfe;
+        }
+
+        .code-keyword {
+            color: #00f2fe;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            border-radius: 50%;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
             color: white;
-            font-weight: 600;
-            font-size: 14px;
-            flex-shrink: 0;
         }
 
-        .workflow-content h4 {
-            font-size: 17px;
+        .step-content h3 {
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .workflow-content p {
+        .step-content p {
             font-size: 15px;
             color: #6e6e73;
-            margin: 0;
-        }
-
-        .tool-badges {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 24px 0;
-        }
-
-        .tool-badge {
-            padding: 12px 20px;
-            background: white;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1d1d1f;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tool-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #00f2fe;
-            border-radius: 50%;
+            margin-bottom: 0;
         }
 
         .next-project {
             background: white;
             border-radius: 24px;
-            padding: 48px;
-            text-align: center;
-            margin-top: 80px;
-        }
-
-        .next-project p {
-            font-size: 15px;
-            color: #6e6e73;
-            margin-bottom: 16px;
-        }
-
-        .next-project h3 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-
-        .next-link {
-            display: inline-flex;
+            padding: 40px;
+            margin-top: 64px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            color: #0071e3;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 500;
-            transition: gap 0.2s;
+            gap: 24px;
         }
 
-        .next-link:hover {
-            gap: 12px;
-        }
-
-        .next-link::after {
-            content: '→';
-            font-size: 20px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 32px;
-            color: #6e6e73;
+        .next-project-label {
             font-size: 13px;
+            color: #6e6e73;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .next-project-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .next-project-link {
+            padding: 14px 28px;
+            background: #0071e3;
+            color: white;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .next-project-link:hover {
+            background: #0077ED;
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .case-study {
+                padding: 100px 24px 60px;
             }
 
             .metrics-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .metric-card {
+                padding: 24px;
             }
 
             .metric-value {
-                font-size: 36px;
+                font-size: 32px;
+            }
+
+            .process-step {
+                grid-template-columns: 1fr;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
             }
 
             .next-project {
-                padding: 32px 24px;
+                flex-direction: column;
+                text-align: center;
             }
-        }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            .nav-links {
+                display: none;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="portfolio.html" class="nav-logo">Matthew Thomas</a>
+            <a href="index.html" class="nav-logo">Matthew Thomas</a>
             <ul class="nav-links">
-                <li><a href="portfolio.html#work">Work</a></li>
-                <li><a href="portfolio.html#about">About</a></li>
-                <li><a href="portfolio.html#contact">Contact</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Case Study Hero -->
-    <section class="case-hero fade-in">
-        <a href="portfolio.html#work" class="back-link">Back to Work</a>
-        <div class="case-meta" style="margin-top: 32px;">
-            <span class="case-tag">Bupa</span>
-            <span class="case-tag">2024</span>
-            <span class="case-tag">AI Automation</span>
+    <article class="case-study">
+        <a href="index.html" class="back-link">Back to Portfolio</a>
+
+        <header class="case-study-header">
+            <div class="case-study-meta">
+                <span class="case-study-tag">AI</span>
+                <span class="case-study-tag">Documentation</span>
+                <span class="case-study-tag">Zeroheight</span>
+            </div>
+            <h1 class="case-study-title">AI Documentation Automation</h1>
+            <p class="case-study-subtitle">Using AI agents to auto-generate comprehensive component documentation</p>
+        </header>
+
+        <div class="hero-image">
+            <img src="AI_documentation.svg" alt="AI Documentation Automation illustration">
         </div>
-        <h1 class="case-title">AI Documentation Automation</h1>
-        <p class="case-subtitle">Building AI agents that auto-generate component documentation and newsletters, saving 160+ hours of manual work.</p>
-    </section>
 
-    <!-- Hero Image -->
-    <div class="case-image">
-        <div class="case-image-inner">
-            AI Documentation
-        </div>
-    </div>
-
-    <!-- Case Study Content -->
-    <div class="case-content">
-        <!-- Overview -->
-        <section class="case-section">
-            <span class="case-section-title">Overview</span>
-            <h2>The Challenge</h2>
-            <p>
-                Design system documentation is essential—but it's also a time sink. Every new component needs usage guidelines, props documentation, accessibility notes, and examples. Updates require manual syncing between Figma and Zeroheight. And monthly newsletters to keep 50 designers informed were taking hours to write.
-            </p>
-            <p>
-                I saw an opportunity to automate the repetitive parts while maintaining quality. The goal wasn't to replace human judgment, but to eliminate the mechanical work that was consuming valuable design time.
-            </p>
-        </section>
-
-        <!-- Problem -->
-        <section class="case-section">
-            <span class="case-section-title">The Problem</span>
-            <h2>Manual Documentation at Scale</h2>
-            <p>
-                The documentation burden was significant:
-            </p>
-            <ul>
-                <li><strong>50 components</strong> needing comprehensive documentation</li>
-                <li><strong>Hours per component</strong> for initial documentation</li>
-                <li><strong>Constant updates</strong> as components evolved</li>
-                <li><strong>Monthly newsletters</strong> taking 5+ hours to compile</li>
-                <li><strong>Inconsistent quality</strong> depending on who wrote the docs</li>
-            </ul>
-        </section>
-
-        <!-- Metrics -->
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-value">160+</div>
                 <div class="metric-label">Hours saved</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">5</div>
-                <div class="metric-label">Hours saved monthly</div>
-            </div>
-            <div class="metric-card">
                 <div class="metric-value">50</div>
                 <div class="metric-label">Components documented</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">2</div>
-                <div class="metric-label">AI agents built</div>
+                <div class="metric-value">3h→15m</div>
+                <div class="metric-label">Per component</div>
             </div>
         </div>
 
-        <!-- Tools -->
-        <section class="case-section">
-            <span class="case-section-title">Tools</span>
-            <h2>The AI Stack</h2>
+        <section class="content-section">
+            <h2>The Challenge</h2>
             <p>
-                I built these automation workflows using a combination of tools that could connect Figma data to documentation output:
+                Comprehensive component documentation is essential for design system adoption, but it's also incredibly time-consuming. Each component in our library needed usage guidelines, props documentation, accessibility notes, and code examples—work that typically took 3+ hours per component.
             </p>
-            <div class="tool-badges">
-                <span class="tool-badge">Figma MCP</span>
-                <span class="tool-badge">Claude AI</span>
-                <span class="tool-badge">Zeroheight</span>
-            </div>
-        </section>
-
-        <!-- Solution 1 -->
-        <section class="case-section">
-            <span class="case-section-title">Solution 1</span>
-            <h2>Component Documentation Agent</h2>
             <p>
-                The first agent generates Zeroheight component documentation directly from Figma components. Here's how it works:
-            </p>
-
-            <div class="workflow-step">
-                <div class="workflow-number">1</div>
-                <div class="workflow-content">
-                    <h4>Extract Component Data</h4>
-                    <p>Figma MCP reads the component structure, variants, properties, and any existing annotations.</p>
-                </div>
-            </div>
-
-            <div class="workflow-step">
-                <div class="workflow-number">2</div>
-                <div class="workflow-content">
-                    <h4>Generate Documentation</h4>
-                    <p>Claude processes the component data and generates usage guidelines, accessibility notes, and implementation examples.</p>
-                </div>
-            </div>
-
-            <div class="workflow-step">
-                <div class="workflow-number">3</div>
-                <div class="workflow-content">
-                    <h4>Format for Zeroheight</h4>
-                    <p>The output is structured to match our documentation template, ready for review and publishing.</p>
-                </div>
-            </div>
-
-            <div class="workflow-step">
-                <div class="workflow-number">4</div>
-                <div class="workflow-content">
-                    <h4>Human Review</h4>
-                    <p>I review the generated content, make any necessary adjustments, and publish to Zeroheight.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solution 2 -->
-        <section class="case-section">
-            <span class="case-section-title">Solution 2</span>
-            <h2>Newsletter Automation Agent</h2>
-            <p>
-                The second agent generates our monthly Design System newsletter. It pulls together component updates, usage stats, and team news into a consistent format:
-            </p>
-            <ul>
-                <li><strong>Change detection</strong> — identifies what's new or updated in the system</li>
-                <li><strong>Content generation</strong> — writes summaries of changes in accessible language</li>
-                <li><strong>Formatting</strong> — structures content for our newsletter template</li>
-                <li><strong>Consistency</strong> — maintains the same tone and format each month</li>
-            </ul>
-            <p>
-                What used to take 5+ hours now takes about 30 minutes of review and adjustment.
+                With 50 components in the library and constant updates, documentation was always falling behind. Designers needed better guidance, but the team couldn't keep up with the documentation debt.
             </p>
         </section>
 
-        <!-- Approach -->
-        <section class="case-section">
-            <span class="case-section-title">Approach</span>
-            <h2>Automation with Human Oversight</h2>
+        <section class="content-section">
+            <h2>The Solution</h2>
             <p>
-                The key principle throughout was that AI handles the mechanical work, but humans maintain quality control:
+                I built an AI agent using Figma MCP (Model Context Protocol) and Claude that can read component specifications directly from Figma and generate comprehensive Zeroheight documentation automatically.
             </p>
 
             <div class="highlight-box">
-                <h3>What AI Does Well</h3>
-                <p style="margin-bottom: 0;">
-                    Extracting structured data from Figma. Generating first drafts. Maintaining consistent formatting. Compiling information from multiple sources. Following templates.
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>What Humans Do Better</h3>
-                <p style="margin-bottom: 0;">
-                    Judging nuance. Catching edge cases. Understanding context. Making decisions about what to include or exclude. Ensuring accuracy.
-                </p>
+                <p>The AI agent reduced documentation time from 3+ hours to approximately 15 minutes per component—including review and refinement.</p>
             </div>
         </section>
 
-        <!-- Outcome -->
-        <section class="case-section">
-            <span class="case-section-title">Outcome</span>
-            <h2>Time Back for Real Problems</h2>
+        <section class="content-section">
+            <h2>How It Works</h2>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Component Reading</h3>
+                        <p>The agent uses Figma MCP to read component structure, variants, properties, and any existing annotations from the Figma file.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Context Analysis</h3>
+                        <p>Claude analyses the component's purpose, use cases, and relationship to other components in the system.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Documentation Generation</h3>
+                        <p>The agent generates structured documentation including overview, usage guidelines, props tables, accessibility notes, and do/don't examples.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Zeroheight Formatting</h3>
+                        <p>Output is formatted for direct import into Zeroheight, maintaining consistent structure across all component pages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Documentation Structure</h2>
             <p>
-                The automation has fundamentally changed how we approach documentation:
+                Each generated documentation page follows a consistent template:
             </p>
             <ul>
-                <li><strong>160+ hours saved</strong> on component documentation work</li>
-                <li><strong>5 hours monthly</strong> saved on newsletter creation</li>
-                <li><strong>Consistent quality</strong> — every component documented to the same standard</li>
-                <li><strong>Faster updates</strong> — documentation stays in sync with component changes</li>
-                <li><strong>More time for design</strong> — the team spends time on product problems, not paperwork</li>
+                <li><strong>Overview:</strong> What the component is and when to use it</li>
+                <li><strong>Anatomy:</strong> Breakdown of component parts and structure</li>
+                <li><strong>Variants:</strong> Available variations and their use cases</li>
+                <li><strong>Props/Properties:</strong> Complete list of configurable options</li>
+                <li><strong>Accessibility:</strong> WCAG compliance notes and keyboard navigation</li>
+                <li><strong>Best Practices:</strong> Do and don't guidelines with examples</li>
+                <li><strong>Related Components:</strong> Links to similar or complementary components</li>
             </ul>
-            <p>
-                This project also opened the door to exploring other AI opportunities across the design and development workflow.
-            </p>
         </section>
 
-        <!-- Next Project -->
+        <section class="content-section">
+            <h2>Sample Output</h2>
+            <div class="code-block">
+                <code>
+<span class="code-comment">## Button</span>
+
+<span class="code-keyword">### Overview</span>
+<span class="code-string">Buttons allow users to trigger actions with a single tap.</span>
+<span class="code-string">Use buttons for the primary action on a page or within a form.</span>
+
+<span class="code-keyword">### Variants</span>
+<span class="code-string">• **Primary**: High-emphasis actions (submit, confirm)</span>
+<span class="code-string">• **Secondary**: Medium-emphasis supporting actions</span>
+<span class="code-string">• **Tertiary**: Low-emphasis actions (cancel, dismiss)</span>
+<span class="code-string">• **Destructive**: Actions that delete or remove</span>
+
+<span class="code-keyword">### Accessibility</span>
+<span class="code-string">• Minimum touch target: 44×44px</span>
+<span class="code-string">• Colour contrast ratio: 4.5:1 minimum</span>
+<span class="code-string">• Focus indicator: 2px outline with offset</span>
+<span class="code-string">• Keyboard: Enter/Space to activate</span>
+                </code>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Impact</h2>
+            <p>
+                The AI documentation agent has transformed our documentation workflow:
+            </p>
+            <ul>
+                <li><strong>160+ hours saved</strong> across initial documentation of 50 components</li>
+                <li><strong>Consistent quality</strong> across all documentation pages</li>
+                <li><strong>Always current</strong>—can regenerate when components update</li>
+                <li><strong>Better adoption</strong>—designers now have the guidance they need</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Lessons Learned</h2>
+            <p>
+                Building this agent taught me valuable lessons about AI-assisted design systems work:
+            </p>
+            <ul>
+                <li><strong>Structure matters:</strong> Well-organised Figma files produce better documentation</li>
+                <li><strong>Human review essential:</strong> AI gets 80% right; human refinement adds the final 20%</li>
+                <li><strong>Iterate the prompt:</strong> The prompt engineering took more time than the code</li>
+                <li><strong>Start with templates:</strong> Defining the output structure first improved quality dramatically</li>
+            </ul>
+        </section>
+
         <div class="next-project">
-            <p>Next Case Study</p>
-            <h3>Figma Linting Plugin</h3>
-            <a href="case-study-linting.html" class="next-link">View Case Study</a>
+            <div>
+                <div class="next-project-label">Next Project</div>
+                <div class="next-project-title">AI Newsletter Automation</div>
+            </div>
+            <a href="case-study-newsletter.html" class="next-project-link">View Case Study</a>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2024 Matthew Thomas. All rights reserved. | Crouch End, London</p>
-    </footer>
+    </article>
 </body>
 </html>

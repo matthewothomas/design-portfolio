@@ -1,0 +1,57 @@
+<svg width="1508" height="976" viewBox="0 0 1508 976" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="greenGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+  </linearGradient>
+</defs>
+<rect width="1508" height="976" fill="url(#greenGradient2)"/>
+
+<!-- Left design circle background -->
+<circle opacity="0.2" cx="407" cy="488" r="180" fill="#1F1F1F"/>
+
+<!-- Right validation circle background -->
+<circle opacity="0.2" cx="1101" cy="488" r="180" fill="#1F1F1F"/>
+
+<!-- Number badge circle -->
+<circle cx="477" cy="254" r="46" fill="#141414" stroke="#43e97b" stroke-width="10"/>
+
+<!-- Number 100+ displayed as "100" -->
+<text x="438" y="270" font-family="system-ui, -apple-system" font-size="24" font-weight="700" fill="#43e97b">100</text>
+
+<!-- Left Figma frame -->
+<g opacity="0.9">
+  <rect x="327" y="418" width="160" height="140" rx="12" fill="#1F1F1F"/>
+  <!-- Frame header -->
+  <rect x="343" y="434" width="128" height="24" rx="6" fill="#43e97b" opacity="0.4"/>
+  <!-- Design elements -->
+  <rect x="343" y="470" width="60" height="60" rx="8" fill="#43e97b" opacity="0.6"/>
+  <rect x="415" y="470" width="56" height="28" rx="6" fill="#43e97b" opacity="0.5"/>
+  <rect x="415" y="502" width="56" height="28" rx="6" fill="#43e97b" opacity="0.5"/>
+  <circle cx="373" cy="542" r="8" fill="#43e97b"/>
+  <circle cx="397" cy="542" r="8" fill="#43e97b"/>
+  <circle cx="421" cy="542" r="8" fill="#43e97b"/>
+</g>
+
+<!-- Right validation checkmark -->
+<g opacity="0.9">
+  <circle cx="1101" cy="488" r="70" fill="#1F1F1F"/>
+  <!-- Check mark -->
+  <path d="M1071 488L1091 508L1131 468" stroke="#43e97b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Warning indicators -->
+  <circle cx="1061" cy="438" r="12" fill="#43e97b" opacity="0.4"/>
+  <circle cx="1141" cy="438" r="12" fill="#43e97b" opacity="0.4"/>
+  <circle cx="1061" cy="538" r="12" fill="#43e97b" opacity="0.4"/>
+  <circle cx="1141" cy="538" r="12" fill="#43e97b" opacity="0.4"/>
+</g>
+
+<!-- Connection line -->
+<rect x="487" y="483" width="514" height="10" rx="5" fill="#1F1F1F" opacity="0.8"/>
+<!-- Connection dot left -->
+<circle cx="492" cy="488" r="15" fill="#1F1F1F"/>
+<!-- Connection dot right -->
+<circle cx="996" cy="488" r="15" fill="#1F1F1F"/>
+
+<!-- Arrow indicator -->
+<path d="M744 476L752 488L744 500" stroke="#1F1F1F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+</svg>

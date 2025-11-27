@@ -220,7 +220,6 @@
         .project-image {
             width: 100%;
             aspect-ratio: 16 / 10;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -237,16 +236,24 @@
             object-fit: cover;
         }
 
+        /* Green for Files.svg */
+        .project-image.consolidation {
+            background: #5ab88a;
+        }
+
+        /* Blue for Tokens.svg */
         .project-image.tokens {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: #5b7bef;
         }
 
+        /* Purple for AI_documentation.svg */
         .project-image.ai-docs {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: #AB6FE9;
         }
 
+        /* Yellow for AI_Agents.svg */
         .project-image.ai-newsletter {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            background: #F3AC3C;
         }
 
         .project-content {
@@ -326,11 +333,15 @@
             border-radius: 18px;
         }
 
-        .testimonial-quote-icon {
-            width: 66px;
-            height: 43px;
-            margin-bottom: 20px;
+        .testimonial-card::before {
+            content: '"';
             display: block;
+            font-size: 100px;
+            font-weight: 700;
+            color: #d1d1d6;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            font-family: Georgia, serif;
         }
 
         .testimonial-text {
@@ -526,9 +537,8 @@
                 padding: 24px 20px;
             }
 
-            .testimonial-quote-icon {
-                width: 50px;
-                height: 32px;
+            .testimonial-card::before {
+                font-size: 72px;
                 margin-bottom: 12px;
             }
 
@@ -611,7 +621,7 @@
         <div class="projects-grid">
             <!-- Project 1: Component Library Consolidation -->
             <article class="project-card">
-                <div class="project-image">
+                <div class="project-image consolidation">
                     <img src="Files.svg" alt="Component Library illustration">
                 </div>
                 <div class="project-content">
@@ -695,7 +705,6 @@
             
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <img src="speech3.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "His attention to detail, problem-solving skills, and dedication to producing user-centered designs are helping the squad to consistently do the best we can for our customers. His commitment to intuitive and appealing designs enhances the user experience, positively impacting our projects."
                     </p>
@@ -704,7 +713,6 @@
                 </div>
 
                 <div class="testimonial-card">
-                    <img src="speech1.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "I worked closely with Matt for a couple of years on a number of strategic projects and I'd highly recommend working with him. He thinks carefully about problems, is curious and asks important questions, has a strong attention to detail and is highly collaborative, adapting his style to different stakeholders."
                     </p>
@@ -713,7 +721,6 @@
                 </div>
 
                 <div class="testimonial-card">
-                    <img src="speech4.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "Matt is a super talented designer who has an integrated skillset. He is able to approach and deliver on a multitude of projects, from branding to UI, and traditional advertising. He engages with feedback, works hard to field a variety of options, and crafts to a high polish."
                     </p>
@@ -722,7 +729,6 @@
                 </div>
 
                 <div class="testimonial-card">
-                    <img src="speech2.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "Working with him is a pleasure: he's a safe space to vent when things are frustrating, yet while we feel able to be honest about when things aren't going well, Matt also doesn't dwell on negatives — he keeps things moving in a positive direction."
                     </p>
@@ -731,7 +737,6 @@
                 </div>
 
                 <div class="testimonial-card">
-                    <img src="speech1.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "Matthew is a highly skilled award winning designer with a strong leaning to all things digital. UI and UX are fast becoming his strong suit."
                     </p>
@@ -740,7 +745,6 @@
                 </div>
 
                 <div class="testimonial-card">
-                    <img src="speech4.svg" alt="" class="testimonial-quote-icon">
                     <p class="testimonial-text">
                         "Matthew has a fantastic presence in the studio. His eagerness to learn and to develop his current skills and his current creative flair mixed with a happy, upbeat personality makes it a joy to work with him."
                     </p>

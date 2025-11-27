@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Newsletter Automation - How I built an AI agent to auto-generate monthly design system newsletters">
+    <title>AI Newsletter Automation - Matthew Thomas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+            background: #fafafa;
+            color: #1d1d1f;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 18px;
+        }
+
+        .case-study {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .case-study-header {
+            margin-bottom: 48px;
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .case-study-tag {
+            font-size: 13px;
+            padding: 8px 16px;
+            background: #43e97b;
+            color: white;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .case-study-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .case-study-subtitle {
+            font-size: 20px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 24px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 40px;
+            font-weight: 700;
+            color: #43e97b;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        .content-section {
+            margin-bottom: 48px;
+        }
+
+        .content-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .content-section p {
+            font-size: 17px;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            font-size: 17px;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
+            border-left: 4px solid #43e97b;
+            padding: 24px 28px;
+            border-radius: 0 16px 16px 0;
+            margin: 32px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: #1d1d1f;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .code-comment {
+            color: #6e6e73;
+        }
+
+        .code-string {
+            color: #43e97b;
+        }
+
+        .code-keyword {
+            color: #f5576c;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: #6e6e73;
+            margin-bottom: 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #f5f5f7;
+            border-radius: 18px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6e6e73;
+            font-size: 15px;
+        }
+
+        .next-project {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .next-project-label {
+            font-size: 13px;
+            color: #6e6e73;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .next-project-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .next-project-link {
+            padding: 14px 28px;
+            background: #0071e3;
+            color: white;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .next-project-link:hover {
+            background: #0077ED;
+        }
+
+        @media (max-width: 768px) {
+            .case-study {
+                padding: 100px 24px 60px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-card {
+                padding: 24px;
+            }
+
+            .metric-value {
+                font-size: 32px;
+            }
+
+            .process-step {
+                grid-template-columns: 1fr;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .next-project {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Matthew Thomas</a>
+            <ul class="nav-links">
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="case-study">
+        <a href="index.html" class="back-link">Back to Portfolio</a>
+
+        <header class="case-study-header">
+            <div class="case-study-meta">
+                <span class="case-study-tag">AI</span>
+                <span class="case-study-tag">Newsletter</span>
+                <span class="case-study-tag">Automation</span>
+            </div>
+            <h1 class="case-study-title">AI Newsletter Automation</h1>
+            <p class="case-study-subtitle">Automating monthly design system communications with AI agents</p>
+        </header>
+
+        <div class="hero-image">
+            <img src="AI_Agents.svg" alt="AI Newsletter Automation illustration">
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">5h</div>
+                <div class="metric-label">Saved per month</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">60h</div>
+                <div class="metric-label">Annual time savings</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">50+</div>
+                <div class="metric-label">Designers reached</div>
+            </div>
+        </div>
+
+        <section class="content-section">
+            <h2>The Challenge</h2>
+            <p>
+                Keeping 50+ designers informed about design system updates was becoming a significant time investment. Each month required manually reviewing all changes, writing summaries, formatting the newsletter, and distributing it across teams.
+            </p>
+            <p>
+                The process typically took 5+ hours monthly—time that could be better spent on strategic work. Additionally, the manual nature meant newsletters were sometimes delayed or inconsistent in coverage.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>The Solution</h2>
+            <p>
+                I built an AI agent using Claude that automatically generates monthly newsletters by analysing design system changes. The agent connects to our Figma libraries and documentation to understand what's changed, then produces a well-structured newsletter draft.
+            </p>
+
+            <div class="highlight-box">
+                <p>The AI agent reduced newsletter creation from 5 hours to under 30 minutes of review and refinement.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>How It Works</h2>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Change Detection</h3>
+                        <p>The agent reviews recent updates to Figma libraries, identifying new components, modifications, and deprecations from the past month.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Content Generation</h3>
+                        <p>Using Claude, the agent generates clear, designer-friendly summaries of each change, explaining what's new and why it matters.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Structure & Formatting</h3>
+                        <p>The content is automatically organised into sections: highlights, new components, updates, deprecations, and upcoming changes.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Review & Send</h3>
+                        <p>I review the generated draft, make any necessary adjustments, and distribute to the design community via Slack and email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Newsletter Structure</h2>
+            <p>
+                The AI generates newsletters with a consistent, scannable format:
+            </p>
+            <ul>
+                <li><strong>Monthly Highlights:</strong> 2-3 key updates that deserve attention</li>
+                <li><strong>New Components:</strong> Any components added to the library</li>
+                <li><strong>Updates & Improvements:</strong> Changes to existing components</li>
+                <li><strong>Token Changes:</strong> New or modified design tokens</li>
+                <li><strong>Deprecations:</strong> Components being retired with migration guidance</li>
+                <li><strong>Coming Soon:</strong> Preview of upcoming work</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Sample Output</h2>
+            <div class="code-block">
+                <code>
+<span class="code-comment"># Design System Newsletter - November 2025</span>
+
+<span class="code-keyword">## 🎯 Highlights</span>
+<span class="code-string">This month we shipped 3 new components and updated our</span>
+<span class="code-string">token architecture for better dark mode support.</span>
+
+<span class="code-keyword">## ✨ New Components</span>
+<span class="code-string">• **DatePicker** - Fully accessible date selection</span>
+<span class="code-string">• **Tooltip** - Information hints with smart positioning</span>
+<span class="code-string">• **Skeleton** - Loading placeholders for content</span>
+
+<span class="code-keyword">## 🔄 Updates</span>
+<span class="code-string">• Button: Added "ghost" variant for tertiary actions</span>
+<span class="code-string">• Card: New elevation options (flat, raised, floating)</span>
+
+<span class="code-keyword">## 🎨 Token Changes</span>
+<span class="code-string">• Added surface-elevated token for layered UIs</span>
+<span class="code-string">• New focus-ring tokens for accessibility</span>
+                </code>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Impact</h2>
+            <p>
+                The automated newsletter has transformed how we communicate design system updates:
+            </p>
+            <ul>
+                <li><strong>Consistency:</strong> Newsletters now go out reliably on the first of each month</li>
+                <li><strong>Coverage:</strong> AI catches changes that might be missed in manual review</li>
+                <li><strong>Time savings:</strong> 60+ hours annually redirected to strategic work</li>
+                <li><strong>Engagement:</strong> Clear, well-structured updates have improved adoption</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Lessons Learned</h2>
+            <p>
+                Building this agent taught me several important lessons about AI automation:
+            </p>
+            <ul>
+                <li><strong>Human review matters:</strong> AI drafts need a human eye for tone and priority</li>
+                <li><strong>Structure helps AI:</strong> Providing clear templates improves output quality</li>
+                <li><strong>Start simple:</strong> The first version just listed changes—refinement came later</li>
+                <li><strong>Measure impact:</strong> Tracking time savings helped justify the investment</li>
+            </ul>
+        </section>
+
+        <div class="next-project">
+            <div>
+                <div class="next-project-label">Next Project</div>
+                <div class="next-project-title">Component Library Consolidation</div>
+            </div>
+            <a href="case-study-consolidation.html" class="next-project-link">View Case Study</a>
+        </div>
+    </article>
+</body>
+</html>

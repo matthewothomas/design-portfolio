@@ -376,14 +376,14 @@
         .about-image {
             width: 100%;
             aspect-ratio: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 80px;
-            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .about-content h2 {
@@ -758,7 +758,7 @@
     <!-- About -->
     <section class="section" id="about">
         <div class="about-section">
-            <div class="about-image">MT</div>
+            <div class="about-image"><img src="profile.jpg" alt="Matthew Thomas"></div>
             <div class="about-content">
                 <h2>About Me</h2>
                 <p>

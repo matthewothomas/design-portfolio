@@ -97,7 +97,7 @@
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -100%;
+            left: 0;
             width: 100%;
             height: 100vh;
             background: rgba(250, 250, 250, 0.98);
@@ -108,12 +108,15 @@
             justify-content: center;
             align-items: center;
             gap: 40px;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
         }
 
         .mobile-menu.active {
-            right: 0;
+            opacity: 1;
+            visibility: visible;
         }
 
         .mobile-menu a {
@@ -121,26 +124,7 @@
             text-decoration: none;
             font-size: 32px;
             font-weight: 600;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s;
-        }
-
-        .mobile-menu.active a {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mobile-menu.active a:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .mobile-menu.active a:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .mobile-menu.active a:nth-child(3) {
-            transition-delay: 0.3s;
+            padding: 10px 20px;
         }
 
         .mobile-menu a:hover {
@@ -596,9 +580,9 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#work" onclick="toggleMenu()">Work</a>
-        <a href="#about" onclick="toggleMenu()">About</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
     </div>
 
     <!-- Hero -->
@@ -800,29 +784,15 @@
 
     <script>
         function toggleMenu() {
-            const hamburger = document.querySelector(".hamburger");
-            const mobileMenu = document.getElementById("mobileMenu");
-            
-            hamburger.classList.toggle("active");
-            mobileMenu.classList.toggle("active");
-            
-            if (mobileMenu.classList.contains("active")) {
-                document.body.style.overflow = "hidden";
-            } else {
-                document.body.style.overflow = "";
-            }
+            document.querySelector(".hamburger").classList.toggle("active");
+            document.getElementById("mobileMenu").classList.toggle("active");
         }
 
-        document.querySelectorAll(".mobile-menu a").forEach(link => {
-            link.addEventListener("click", () => {
-                toggleMenu();
+        document.querySelectorAll(".mobile-menu a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                document.querySelector(".hamburger").classList.remove("active");
+                document.getElementById("mobileMenu").classList.remove("active");
             });
-        });
-
-        document.getElementById("mobileMenu").addEventListener("click", (e) => {
-            if (e.target.id === "mobileMenu") {
-                toggleMenu();
-            }
         });
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vibe Coding - Exploring AI-assisted development with Cursor to rapidly build functional apps">
+    <meta name="description" content="Vibe Coding - Redesigning the Virgin Active homepage using Cursor and Claude AI">
     <title>Vibe Coding — Matthew Thomas</title>
     <style>
         * {
@@ -20,7 +20,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Skip link for keyboard users */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -38,7 +37,6 @@
             top: 0;
         }
 
-        /* Focus styles */
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid #0071e3;
@@ -184,7 +182,7 @@
         }
 
         .metric-value {
-            font-size: 40px;
+            font-size: 36px;
             font-weight: 700;
             color: #E96F6F;
             margin-bottom: 8px;
@@ -240,96 +238,125 @@
             font-weight: 500;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            margin: 32px 0;
+        .comparison-section {
+            margin: 48px 0;
         }
 
-        .project-card-image {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, #E96F6F 0%, #d45555 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .project-card-content {
-            padding: 28px;
-        }
-
-        .project-card-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .project-card-description {
-            font-size: 15px;
-            color: #515154;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .project-card-tech {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            font-size: 12px;
-            padding: 6px 12px;
-            background: #f5f5f7;
-            border-radius: 8px;
-            color: #1d1d1f;
-            font-weight: 500;
-        }
-
-        .process-steps {
+        .comparison-grid {
             display: grid;
-            gap: 20px;
-            margin: 32px 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
         }
 
-        .process-step {
+        .comparison-card {
             background: white;
             border-radius: 18px;
-            padding: 28px;
-            display: grid;
-            grid-template-columns: 48px 1fr;
-            gap: 20px;
-            align-items: start;
+            overflow: hidden;
         }
 
-        .step-number {
-            width: 48px;
-            height: 48px;
+        .comparison-label {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-label.before {
+            background: #f5f5f7;
+            color: #515154;
+        }
+
+        .comparison-label.after {
             background: #E96F6F;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
             color: white;
         }
 
-        .step-content h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .comparison-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .step-content p {
+        .comparison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comparison-image-placeholder {
+            color: #86868b;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .live-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: #E96F6F;
+            color: white;
+            text-decoration: none;
+            border-radius: 980px;
             font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-top: 24px;
+        }
+
+        .live-link:hover {
+            background: #d45555;
+            transform: translateY(-1px);
+        }
+
+        .live-link::after {
+            content: '↗';
+            font-size: 18px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .tool-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tool-desc {
+            font-size: 13px;
             color: #515154;
-            margin-bottom: 0;
         }
 
         .next-project {
@@ -373,7 +400,6 @@
             background: #0077ED;
         }
 
-        /* Reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
             * {
                 transition-duration: 0.01ms !important;
@@ -394,17 +420,15 @@
             }
 
             .metric-value {
-                font-size: 32px;
+                font-size: 28px;
             }
 
-            .process-step {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
 
-            .step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
 
             .next-project {
@@ -419,7 +443,6 @@
     </style>
 </head>
 <body>
-    <!-- Skip link for keyboard navigation -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <nav class="nav" role="navigation" aria-label="Main navigation">
@@ -441,10 +464,10 @@
                 <div class="case-study-meta">
                     <span class="case-study-tag">Vibe Coding</span>
                     <span class="case-study-tag">Cursor</span>
-                    <span class="case-study-tag">AI Development</span>
+                    <span class="case-study-tag">Claude AI</span>
                 </div>
                 <h1 class="case-study-title">Vibe Coding</h1>
-                <p class="case-study-subtitle">Exploring AI-assisted development to rapidly build functional applications</p>
+                <p class="case-study-subtitle">Redesigning the Virgin Active homepage using AI-assisted development</p>
             </header>
 
             <div class="hero-image">
@@ -453,135 +476,121 @@
 
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-value">60%</div>
-                    <div class="metric-label">Faster development</div>
-                </div>
-                <div class="metric-card">
                     <div class="metric-value">Cursor</div>
                     <div class="metric-label">AI-powered IDE</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">React</div>
-                    <div class="metric-label">Production-ready code</div>
+                    <div class="metric-value">Claude</div>
+                    <div class="metric-label">AI assistant</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Vercel</div>
+                    <div class="metric-label">Deployed live</div>
                 </div>
             </div>
 
             <section class="content-section">
                 <h2>What is Vibe Coding?</h2>
                 <p>
-                    Vibe coding is an approach to software development where you describe what you want to build in natural language, and AI helps you write the code. It's about working with AI as a collaborator—guiding direction while letting the AI handle implementation details.
+                    Vibe coding is an approach to development where you describe what you want in natural language and let AI write the code. Rather than writing every line yourself, you guide the direction while AI handles the implementation.
                 </p>
                 <p>
-                    As a designer who understands both user needs and technical constraints, vibe coding lets me rapidly prototype functional applications without deep coding expertise. I can focus on the experience while AI handles the syntax.
+                    As a designer, this lets me build functional prototypes and real applications without deep programming expertise—bridging the gap between design and development.
                 </p>
             </section>
 
             <section class="content-section">
-                <h2>My Approach</h2>
+                <h2>The Project</h2>
                 <p>
-                    I use Cursor (an AI-powered code editor) combined with Claude to build working applications. The workflow feels natural—I describe what I want, review the generated code, and iterate until it matches my vision.
+                    I vibe coded a redesigned Virgin Active homepage to explore how AI-assisted development could produce polished, production-quality interfaces. Working with Cursor and Claude AI, I rebuilt the homepage with a fresh visual approach.
                 </p>
 
                 <div class="highlight-box">
-                    <p>Vibe coding isn't about replacing developers—it's about empowering designers to prototype faster and communicate ideas through working code.</p>
+                    <p>This project demonstrates how designers can use AI tools to bring their ideas to life in working code—without waiting for developer resources.</p>
                 </div>
+
+                <a href="https://virginactive.vercel.app/" class="live-link" target="_blank" rel="noopener noreferrer">View Live Site</a>
             </section>
 
-            <section class="content-section">
-                <h2>Featured Project: Virgin Active Homepage</h2>
-                
-                <div class="project-card">
-                    <div class="project-card-image">
-                        🏋️ Virgin Active Homepage
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Homepage Improvements</h3>
-                        <p class="project-card-description">
-                            Built improvements to the Virgin Active homepage using AI-assisted development. Focused on enhancing the user experience with cleaner layouts and better visual hierarchy.
-                        </p>
-                        <div class="project-card-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Vercel</span>
-                            <span class="tech-tag">Cursor AI</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>The Vibe Coding Process</h2>
-
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Define the Vision</h3>
-                            <p>Start with a clear idea of what you want to build. Sketch the UI, list the features, understand the user flow.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Describe to AI</h3>
-                            <p>Write natural language prompts describing components, layouts, and functionality. Be specific about design details.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Review & Refine</h3>
-                            <p>Evaluate generated code, test in browser, and iterate. Guide the AI toward the exact result you want.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Deploy</h3>
-                            <p>Push to GitHub and deploy via Vercel. Share working prototypes with stakeholders instantly.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Design System Validation</h2>
+            <section class="comparison-section">
+                <h2>Before & After</h2>
                 <p>
-                    Beyond personal projects, I've used vibe coding to test whether AI can replicate production components matching our development team's coding standards. The results were promising:
+                    A comparison showing the original Virgin Active homepage versus my vibe coded redesign.
                 </p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-label before">Original</div>
+                        <div class="comparison-image">
+                            <div class="comparison-image-placeholder">
+                                Original Virgin Active homepage
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-label after">Redesign</div>
+                        <div class="comparison-image">
+                            <div class="comparison-image-placeholder">
+                                Vibe coded redesign
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Tools Used</h2>
+
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">⌨️</div>
+                        <div>
+                            <div class="tool-name">Cursor</div>
+                            <div class="tool-desc">AI-powered code editor</div>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🤖</div>
+                        <div>
+                            <div class="tool-name">Claude AI</div>
+                            <div class="tool-desc">AI assistant for coding</div>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚛️</div>
+                        <div>
+                            <div class="tool-name">React</div>
+                            <div class="tool-desc">Component framework</div>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🚀</div>
+                        <div>
+                            <div class="tool-name">Vercel</div>
+                            <div class="tool-desc">Deployment platform</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>What I Learned</h2>
                 <ul>
-                    <li><strong>60% faster component development</strong> compared to traditional methods</li>
-                    <li><strong>Consistent code structure</strong> when given proper examples</li>
-                    <li><strong>Accessibility built-in</strong> when specified in prompts</li>
-                    <li><strong>Production-ready output</strong> suitable for developer handoff</li>
+                    <li><strong>AI accelerates execution:</strong> Ideas become working code in hours, not days</li>
+                    <li><strong>Design knowledge matters:</strong> Understanding UX principles guides better prompts</li>
+                    <li><strong>Iteration is key:</strong> Refining prompts and reviewing output produces better results</li>
+                    <li><strong>Designers can build:</strong> Technical barriers are lower than ever for prototyping</li>
                 </ul>
             </section>
 
             <section class="content-section">
-                <h2>Why This Matters for Design Systems</h2>
+                <h2>Why This Matters</h2>
                 <p>
-                    Vibe coding bridges the gap between design and development. As a design systems practitioner, I can now:
+                    Vibe coding empowers designers to communicate ideas through working code. Instead of static mockups, I can now build interactive prototypes that stakeholders can actually use and test.
                 </p>
-                <ul>
-                    <li><strong>Prototype interactions</strong> that static designs can't convey</li>
-                    <li><strong>Test component behaviour</strong> before developer handoff</li>
-                    <li><strong>Build internal tools</strong> that improve team workflows</li>
-                    <li><strong>Communicate with developers</strong> in their language—working code</li>
-                </ul>
-            </section>
-
-            <section class="content-section">
-                <h2>Tools I Use</h2>
-                <ul>
-                    <li><strong>Cursor:</strong> AI-powered code editor with Claude integration</li>
-                    <li><strong>Claude:</strong> For complex problem-solving and code generation</li>
-                    <li><strong>React:</strong> Component-based framework for building UIs</li>
-                    <li><strong>Tailwind CSS:</strong> Utility-first styling that AI understands well</li>
-                    <li><strong>Vercel:</strong> One-click deployment from GitHub</li>
-                </ul>
+                <p>
+                    For design systems work, this means I can prototype components, test interactions, and validate ideas faster than ever—all while speaking the same language as developers.
+                </p>
             </section>
 
             <div class="next-project">

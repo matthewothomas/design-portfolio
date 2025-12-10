@@ -83,11 +83,17 @@
             color: #1d1d1f;
             text-decoration: none;
             font-size: 15px;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            opacity: 0.6;
+            color: #0071e3;
+        }
+
+        .nav-links a:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 4px;
+            border-radius: 4px;
         }
 
         .hamburger {
@@ -99,6 +105,16 @@
             z-index: 1001;
             background: none;
             border: none;
+            min-height: 44px;
+            min-width: 44px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hamburger:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 2px;
+            border-radius: 8px;
         }
 
         .hamburger span {
@@ -174,7 +190,7 @@
 
         .hero-subtitle {
             font-size: clamp(20px, 3vw, 28px);
-            color: #515154;
+            color: #48484a;
             font-weight: 500;
             margin-bottom: 40px;
             max-width: 800px;
@@ -190,11 +206,35 @@
             font-size: 15px;
             font-weight: 500;
             transition: all 0.3s;
+            min-height: 48px;
+            min-width: 48px;
         }
 
         .hero-cta:hover {
-            background: #0077ED;
+            background: #005bb5;
             transform: translateY(-1px);
+        }
+
+        .hero-cta:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 3px;
+        }
+
+        .hero-cta:active {
+            transform: translateY(0);
+            background: #004a94;
+        }
+
+        .hero-cta.dark {
+            background: #1d1d1f;
+        }
+
+        .hero-cta.dark:hover {
+            background: #3a3a3c;
+        }
+
+        .hero-cta.dark:active {
+            background: #000;
         }
 
         .section {
@@ -212,7 +252,7 @@
 
         .section-subtitle {
             font-size: 17px;
-            color: #515154;
+            color: #48484a;
             margin-bottom: 40px;
         }
 
@@ -309,7 +349,7 @@
 
         .project-description {
             font-size: 15px;
-            color: #515154;
+            color: #48484a;
             line-height: 1.6;
             margin-bottom: 20px;
             flex-grow: 1;
@@ -320,14 +360,28 @@
             align-items: center;
             gap: 8px;
             color: #0071e3;
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 3px;
             font-size: 15px;
             font-weight: 500;
             transition: all 0.2s;
+            padding: 8px 0;
+            min-height: 44px;
         }
 
         .project-link:hover {
             gap: 12px;
+            color: #005bb5;
+        }
+
+        .project-link:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .project-link:active {
+            color: #004a94;
         }
 
         .project-link::after {
@@ -351,7 +405,7 @@
 
         .testimonials-subheader {
             font-size: 17px;
-            color: #515154;
+            color: #48484a;
             margin-bottom: 0;
         }
 
@@ -405,7 +459,7 @@
 
         .testimonial-role {
             font-size: 14px;
-            color: #515154;
+            color: #48484a;
         }
 
         .about-section {
@@ -492,7 +546,7 @@
 
         .contact-section p {
             font-size: 20px;
-            color: #515154;
+            color: #48484a;
             margin-bottom: 32px;
         }
 
@@ -512,18 +566,32 @@
             font-size: 15px;
             font-weight: 500;
             transition: all 0.3s;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 2px solid #1d1d1f;
+            min-height: 48px;
+            min-width: 48px;
         }
 
         .contact-link:hover {
-            background: #f5f5f7;
+            background: #1d1d1f;
+            color: white;
             transform: translateY(-1px);
+        }
+
+        .contact-link:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 3px;
+        }
+
+        .contact-link:active {
+            transform: translateY(0);
+            background: #000;
+            color: white;
         }
 
         .footer {
             text-align: center;
             padding: 32px 32px;
-            color: #515154;
+            color: #48484a;
             font-size: 13px;
         }
 
@@ -706,7 +774,7 @@
             <h1 id="hero-title" class="hero-title">Building design systems<br>that scale with AI</h1>
             <p class="hero-subtitle">Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years helping teams build accessible, scalable systems.</p>
             <a href="#work" class="hero-cta">View my work</a>
-            <a href="Matthew Thomas CV.pdf" class="hero-cta" style="background: #1d1d1f; margin-left: 12px;" download>Download CV</a>
+            <a href="Matthew Thomas CV.pdf" class="hero-cta dark" style="margin-left: 12px;" download>Download CV</a>
         </section>
 
         <!-- Projects -->

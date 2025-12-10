@@ -101,7 +101,7 @@
             color: #0071e3;
             text-decoration: underline;
             text-underline-offset: 3px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             transition: gap 0.2s, color 0.2s;
             margin-bottom: 32px;
@@ -172,13 +172,6 @@
             font-weight: 600;
             margin-bottom: 16px;
             color: #1d1d1f;
-        }
-
-        .ds-description {
-            font-size: 15px;
-            color: #48484a;
-            margin-bottom: 20px;
-            line-height: 1.6;
         }
 
         /* Token Tables */
@@ -257,18 +250,18 @@
         }
 
         .type-display {
-            font-size: 80px;
+            font-size: 64px;
             font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.05;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 8px;
         }
 
         .type-h1 {
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
             margin-bottom: 8px;
         }
 
@@ -276,32 +269,49 @@
             font-size: 40px;
             font-weight: 600;
             letter-spacing: -0.02em;
+            line-height: 1.2;
             margin-bottom: 8px;
         }
 
         .type-h3 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 600;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .type-h4 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .type-body-lg {
+            font-size: 20px;
+            line-height: 1.6;
             margin-bottom: 8px;
         }
 
         .type-body {
-            font-size: 17px;
-            line-height: 1.7;
+            font-size: 16px;
+            line-height: 1.5;
             margin-bottom: 8px;
         }
 
-        .type-body-small {
-            font-size: 15px;
-            line-height: 1.6;
+        .type-body-sm {
+            font-size: 14px;
+            line-height: 1.5;
             color: #48484a;
             margin-bottom: 8px;
         }
 
         .type-caption {
-            font-size: 13px;
+            font-size: 12px;
             color: #48484a;
+            line-height: 1.4;
             margin-bottom: 8px;
         }
 
@@ -343,17 +353,6 @@
             flex-wrap: wrap;
             gap: 12px;
             align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .component-code {
-            background: #f5f5f7;
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-family: "SF Mono", Monaco, monospace;
-            font-size: 12px;
-            color: #48484a;
-            overflow-x: auto;
         }
 
         /* Button Components */
@@ -364,7 +363,7 @@
             color: white;
             text-decoration: none;
             border-radius: 980px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             border: none;
             cursor: pointer;
@@ -381,7 +380,7 @@
             color: white;
             text-decoration: none;
             border-radius: 980px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             border: none;
             cursor: pointer;
@@ -401,10 +400,9 @@
             color: #1d1d1f;
             text-decoration: none;
             border-radius: 980px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             cursor: pointer;
         }
 
@@ -421,7 +419,7 @@
             background: transparent;
             color: #0071e3;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             border: none;
             cursor: pointer;
@@ -450,6 +448,7 @@
             border-radius: 24px;
             overflow: hidden;
             max-width: 300px;
+            border: 1px solid #e5e5e5;
         }
 
         .card-demo-image {
@@ -478,17 +477,6 @@
         .spacing-block {
             background: #0071e3;
             border-radius: 4px;
-        }
-
-        /* Radius Demo */
-        .radius-block {
-            width: 80px;
-            height: 80px;
-            background: #f5f5f7;
-            border: 2px solid #e5e5e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         @media (max-width: 768px) {
@@ -551,7 +539,6 @@
                 <!-- Primitive Color Tokens -->
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Primitive Colours</h3>
-                    <p class="ds-description">The foundational colour palette. These raw values are never used directly in components—they're referenced by semantic tokens.</p>
                     
                     <div class="token-table">
                         <div class="token-row header">
@@ -663,7 +650,6 @@
                 <!-- Semantic Color Tokens -->
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Semantic Colours</h3>
-                    <p class="ds-description">Purpose-driven tokens that reference primitives. These are used in components and can be swapped for theming.</p>
                     
                     <div class="token-table">
                         <div class="token-row header">
@@ -735,14 +721,14 @@
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">color.interactive.primary.hover</span>
+                            <span class="token-name">color.interactive.hover</span>
                             <span class="token-value">color.blue.600</span>
                             <div class="token-preview">
                                 <div class="color-swatch" style="background: #005bb5;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">color.interactive.primary.active</span>
+                            <span class="token-name">color.interactive.active</span>
                             <span class="token-value">color.blue.700</span>
                             <div class="token-preview">
                                 <div class="color-swatch" style="background: #004a94;"></div>
@@ -761,7 +747,6 @@
                 <!-- Spacing Tokens -->
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Spacing</h3>
-                    <p class="ds-description">Consistent spacing scale based on 4px increments.</p>
                     
                     <div class="token-table">
                         <div class="token-row header">
@@ -770,63 +755,63 @@
                             <span>Preview</span>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.xs</span>
+                            <span class="token-name">spacing.4</span>
                             <span class="token-value">4px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 4px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.sm</span>
+                            <span class="token-name">spacing.8</span>
                             <span class="token-value">8px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 8px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.md</span>
+                            <span class="token-name">spacing.12</span>
                             <span class="token-value">12px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 12px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.lg</span>
+                            <span class="token-name">spacing.16</span>
                             <span class="token-value">16px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 16px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.xl</span>
+                            <span class="token-name">spacing.20</span>
                             <span class="token-value">20px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 20px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.2xl</span>
+                            <span class="token-name">spacing.24</span>
                             <span class="token-value">24px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 24px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.3xl</span>
+                            <span class="token-name">spacing.32</span>
                             <span class="token-value">32px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 32px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.4xl</span>
+                            <span class="token-name">spacing.48</span>
                             <span class="token-value">48px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 48px; height: 20px;"></div>
                             </div>
                         </div>
                         <div class="token-row">
-                            <span class="token-name">spacing.5xl</span>
+                            <span class="token-name">spacing.64</span>
                             <span class="token-value">64px</span>
                             <div class="token-preview">
                                 <div class="spacing-block" style="width: 64px; height: 20px;"></div>
@@ -838,7 +823,6 @@
                 <!-- Border Radius Tokens -->
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Border Radius</h3>
-                    <p class="ds-description">Rounded corners for different component sizes and contexts.</p>
                     
                     <div class="token-table">
                         <div class="token-row header">
@@ -863,27 +847,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Shadow Tokens -->
-                <div class="ds-subsection">
-                    <h3 class="ds-subsection-title">Shadows</h3>
-                    <p class="ds-description">Subtle elevation for interactive elements.</p>
-                    
-                    <div class="token-table">
-                        <div class="token-row header">
-                            <span>Token</span>
-                            <span>Value</span>
-                            <span>Preview</span>
-                        </div>
-                        <div class="token-row">
-                            <span class="token-name">shadow.sm</span>
-                            <span class="token-value">0 1px 2px rgba(0,0,0,0.05)</span>
-                            <div class="token-preview">
-                                <div style="width: 60px; height: 40px; background: white; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             <!-- TYPOGRAPHY SECTION -->
@@ -892,18 +855,17 @@
                 
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Type Scale</h3>
-                    <p class="ds-description">SF Pro system font stack with consistent sizing and weights.</p>
 
                     <div class="type-sample">
                         <div class="type-sample-label">Display</div>
                         <div class="type-display">Aa</div>
-                        <div class="type-specs">80px / 700 / -0.04em / 1.05</div>
+                        <div class="type-specs">64px / 700 / -0.03em / 1.1</div>
                     </div>
 
                     <div class="type-sample">
                         <div class="type-sample-label">Heading 1</div>
                         <div class="type-h1">Design Systems</div>
-                        <div class="type-specs">56px / 700 / -0.03em / 1.1</div>
+                        <div class="type-specs">48px / 700 / -0.02em / 1.15</div>
                     </div>
 
                     <div class="type-sample">
@@ -915,31 +877,43 @@
                     <div class="type-sample">
                         <div class="type-sample-label">Heading 3</div>
                         <div class="type-h3">The Challenge</div>
-                        <div class="type-specs">28px / 600 / -0.02em / 1.3</div>
+                        <div class="type-specs">32px / 600 / -0.01em / 1.25</div>
+                    </div>
+
+                    <div class="type-sample">
+                        <div class="type-sample-label">Heading 4</div>
+                        <div class="type-h4">Component Details</div>
+                        <div class="type-specs">24px / 600 / -0.01em / 1.3</div>
+                    </div>
+
+                    <div class="type-sample">
+                        <div class="type-sample-label">Body Large</div>
+                        <div class="type-body-lg">Senior Product Designer specialising in Design Systems and AI-assisted workflows.</div>
+                        <div class="type-specs">20px / 400 / normal / 1.6</div>
                     </div>
 
                     <div class="type-sample">
                         <div class="type-sample-label">Body</div>
-                        <div class="type-body">Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years helping teams build accessible, scalable systems.</div>
-                        <div class="type-specs">17px / 400 / normal / 1.7</div>
+                        <div class="type-body">8+ years helping teams build accessible, scalable systems that work across platforms.</div>
+                        <div class="type-specs">16px / 400 / normal / 1.5</div>
                     </div>
 
                     <div class="type-sample">
                         <div class="type-sample-label">Body Small</div>
-                        <div class="type-body-small">Unified 4 fragmented libraries into a single source of truth, eliminating 75% component duplication.</div>
-                        <div class="type-specs">15px / 400 / normal / 1.6 / color.text.secondary</div>
+                        <div class="type-body-sm">Unified 4 fragmented libraries into a single source of truth, eliminating 75% component duplication.</div>
+                        <div class="type-specs">14px / 400 / normal / 1.5</div>
                     </div>
 
                     <div class="type-sample">
                         <div class="type-sample-label">Caption</div>
                         <div class="type-caption">© 2025 Matthew Thomas. All rights reserved.</div>
-                        <div class="type-specs">13px / 400 / normal / 1.5 / color.text.secondary</div>
+                        <div class="type-specs">12px / 400 / normal / 1.4</div>
                     </div>
                 </div>
 
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Font Stack</h3>
-                    <div class="component-code">font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;</div>
+                    <div style="background: #f5f5f7; border-radius: 8px; padding: 12px 16px; font-family: 'SF Mono', Monaco, monospace; font-size: 12px; color: #48484a;">font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;</div>
                 </div>
             </section>
 
@@ -948,13 +922,11 @@
                 <h2 class="ds-section-title">Components</h2>
 
                 <div class="component-grid">
-                    <!-- Buttons -->
                     <div class="component-card">
                         <div class="component-label">Button / Primary</div>
                         <div class="component-preview">
                             <button class="btn-primary">View my work</button>
                         </div>
-                        <div class="component-code">.hero-cta</div>
                     </div>
 
                     <div class="component-card">
@@ -962,7 +934,6 @@
                         <div class="component-preview">
                             <button class="btn-secondary">Download CV</button>
                         </div>
-                        <div class="component-code">.hero-cta.dark</div>
                     </div>
 
                     <div class="component-card">
@@ -970,7 +941,6 @@
                         <div class="component-preview">
                             <button class="btn-tertiary">View Case Study</button>
                         </div>
-                        <div class="component-code">.project-link, .contact-link</div>
                     </div>
 
                     <div class="component-card">
@@ -978,10 +948,8 @@
                         <div class="component-preview">
                             <button class="btn-plain">Back to Portfolio</button>
                         </div>
-                        <div class="component-code">.back-link</div>
                     </div>
 
-                    <!-- Tags -->
                     <div class="component-card">
                         <div class="component-label">Tag</div>
                         <div class="component-preview">
@@ -989,12 +957,10 @@
                             <span class="tag">Architecture</span>
                             <span class="tag">Theming</span>
                         </div>
-                        <div class="component-code">.project-tag, .skill-badge</div>
                     </div>
 
-                    <!-- Card -->
                     <div class="component-card">
-                        <div class="component-label">Card / Project</div>
+                        <div class="component-label">Card</div>
                         <div class="component-preview">
                             <div class="card-demo">
                                 <div class="card-demo-image"></div>
@@ -1004,23 +970,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="component-code">.project-card</div>
                     </div>
 
-                    <!-- Full Width Components -->
                     <div class="component-card full-width">
                         <div class="component-label">Navigation</div>
                         <div class="component-preview" style="background: rgba(250,250,250,0.8); padding: 20px; border-radius: 12px; backdrop-filter: blur(20px);">
                             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                                 <span style="font-weight: 600;">Matthew Thomas</span>
                                 <div style="display: flex; gap: 32px;">
-                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 15px;">Work</a>
-                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 15px;">About</a>
-                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 15px;">Contact</a>
+                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 14px;">Work</a>
+                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 14px;">About</a>
+                                    <a href="#" style="color: #1d1d1f; text-decoration: none; font-size: 14px;">Contact</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="component-code">.nav</div>
                     </div>
                 </div>
             </section>
@@ -1031,7 +994,6 @@
                 
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Standards</h3>
-                    <p class="ds-description">This portfolio is built to WCAG 2.2 AA standards.</p>
                     
                     <div class="token-table">
                         <div class="token-row">

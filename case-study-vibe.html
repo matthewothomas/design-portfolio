@@ -161,7 +161,7 @@
 
         .case-study-subtitle {
             font-size: 20px;
-            color: #515154;
+            color: #48484a;
             font-weight: 500;
         }
 
@@ -207,7 +207,7 @@
 
         .metric-label {
             font-size: 14px;
-            color: #515154;
+            color: #48484a;
             font-weight: 500;
         }
 
@@ -325,11 +325,22 @@
             font-weight: 500;
             transition: all 0.3s;
             margin-top: 24px;
+            min-height: 48px;
         }
 
         .live-link:hover {
-            background: #d45555;
+            background: #c75555;
             transform: translateY(-1px);
+        }
+
+        .live-link:focus-visible {
+            outline: 2px solid #E96F6F;
+            outline-offset: 3px;
+        }
+
+        .live-link:active {
+            transform: translateY(0);
+            background: #b04545;
         }
 
         .live-link::after {
@@ -372,7 +383,7 @@
 
         .tool-desc {
             font-size: 13px;
-            color: #515154;
+            color: #48484a;
         }
 
         .next-project {
@@ -388,7 +399,7 @@
 
         .next-project-label {
             font-size: 13px;
-            color: #515154;
+            color: #48484a;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 8px;
@@ -410,10 +421,20 @@
             font-weight: 500;
             transition: all 0.3s;
             white-space: nowrap;
+            min-height: 48px;
         }
 
         .next-project-link:hover {
-            background: #0077ED;
+            background: #005bb5;
+        }
+
+        .next-project-link:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 3px;
+        }
+
+        .next-project-link:active {
+            background: #004a94;
         }
 
         @media (prefers-reduced-motion: reduce) {

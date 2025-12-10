@@ -106,8 +106,8 @@
         .case-study-tag {
             font-size: 13px;
             padding: 8px 16px;
-            background: #AB6FE9;
-            color: white;
+            background: #f5f5f7;
+            color: #1d1d1f;
             border-radius: 100px;
             font-weight: 500;
         }
@@ -213,6 +213,26 @@
         .highlight-box p {
             margin-bottom: 0;
             font-weight: 500;
+        }
+
+        .screenshot-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .screenshot {
+            background: white;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .screenshot img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
         }
 
         .code-block {
@@ -424,6 +444,21 @@
 
             <div class="highlight-box">
                 <p>The AI agent reduced documentation time from 3+ hours to approximately 15 minutes per component—including review and refinement.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>The Agent in Action</h2>
+            <p>
+                Here's what the AI documentation workflow looks like in practice:
+            </p>
+            <div class="screenshot-gallery">
+                <div class="screenshot">
+                    <img src="Claude-1.png" alt="Claude AI agent reading Figma component specifications">
+                </div>
+                <div class="screenshot">
+                    <img src="Claude-2.png" alt="Claude AI agent generating Zeroheight documentation">
+                </div>
             </div>
         </section>
 

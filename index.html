@@ -447,6 +447,20 @@
             text-align: left;
         }
 
+        .about-photo {
+            width: 100%;
+            max-width: 500px;
+            margin: 32px auto;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -888,7 +902,6 @@
         <!-- About -->
         <section class="section" id="about" aria-labelledby="about-title">
             <div class="about-section">
-                <div class="about-image"><img src="thomas-family.jpeg" alt="Matthew with his family"></div>
                 <div class="about-content">
                     <h2 id="about-title">About Me</h2>
                     <p>
@@ -900,6 +913,9 @@
                     <p>
                         Gardening has become my unexpected therapy. There's something satisfying about growing your own veg and teaching a little one that food doesn't just appear in the fridge. Muddy hands, proud moments.
                     </p>
+                    <div class="about-photo">
+                        <img src="thomas-family.jpeg" alt="Matthew with his family">
+                    </div>
                     <div class="skills-list" role="list" aria-label="Interests">
                         <span class="skill-badge" role="listitem">Family Adventures</span>
                         <span class="skill-badge" role="listitem">Festival Season</span>

@@ -391,26 +391,11 @@
             background: #3a3a3c;
         }
 
-        .btn-outline {
-            display: inline-block;
-            padding: 14px 28px;
-            background: white;
-            color: #1d1d1f;
-            text-decoration: none;
-            border-radius: 980px;
-            font-size: 15px;
-            font-weight: 500;
-            border: 2px solid #1d1d1f;
-            cursor: pointer;
-        }
-
-        .btn-outline:hover {
-            background: #1d1d1f;
-            color: white;
-        }
-
-        .btn-ghost {
-            display: inline-block;
+        .btn-tertiary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 10px 20px;
             background: white;
             color: #1d1d1f;
@@ -423,7 +408,28 @@
             cursor: pointer;
         }
 
-        .btn-ghost:hover {
+        .btn-tertiary:hover {
+            background: #fafafa;
+            border-color: #d4d4d4;
+        }
+
+        .btn-tertiary-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            color: #1d1d1f;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-tertiary-icon:hover {
             background: #fafafa;
             border-color: #d4d4d4;
         }
@@ -437,12 +443,6 @@
             border-radius: 10px;
             color: #1d1d1f;
             font-weight: 500;
-        }
-
-        .tag-medium {
-            font-size: 13px;
-            padding: 8px 14px;
-            border-radius: 12px;
         }
 
         /* Card Components */
@@ -559,6 +559,13 @@
                             <span>Token</span>
                             <span>Value</span>
                             <span>Preview</span>
+                        </div>
+                        <div class="token-row">
+                            <span class="token-name">color.white</span>
+                            <span class="token-value">#ffffff</span>
+                            <div class="token-preview">
+                                <div class="color-swatch" style="background: #ffffff;"></div>
+                            </div>
                         </div>
                         <div class="token-row">
                             <span class="token-name">color.grey.50</span>
@@ -681,7 +688,7 @@
                         </div>
                         <div class="token-row">
                             <span class="token-name">color.bg.surface</span>
-                            <span class="token-value">#ffffff</span>
+                            <span class="token-value">color.white</span>
                             <div class="token-preview">
                                 <div class="color-swatch" style="background: #ffffff;"></div>
                             </div>
@@ -702,7 +709,7 @@
                         </div>
                         <div class="token-row">
                             <span class="token-name">color.text.inverse</span>
-                            <span class="token-value">#ffffff</span>
+                            <span class="token-value">color.white</span>
                             <div class="token-preview">
                                 <div class="color-swatch" style="background: #ffffff;"></div>
                             </div>
@@ -987,39 +994,30 @@
                     </div>
 
                     <div class="component-card">
-                        <div class="component-label">Button / Outline</div>
+                        <div class="component-label">Button / Tertiary</div>
                         <div class="component-preview">
-                            <button class="btn-outline">Email Me</button>
+                            <button class="btn-tertiary">View Case Study</button>
                         </div>
-                        <div class="component-code">.contact-link</div>
+                        <div class="component-code">.project-link, .contact-link</div>
                     </div>
 
                     <div class="component-card">
-                        <div class="component-label">Button / Ghost</div>
+                        <div class="component-label">Button / Tertiary + Icon</div>
                         <div class="component-preview">
-                            <button class="btn-ghost">View Case Study</button>
+                            <button class="btn-tertiary-icon">← Back to Portfolio</button>
                         </div>
-                        <div class="component-code">.project-link</div>
+                        <div class="component-code">.back-link</div>
                     </div>
 
                     <!-- Tags -->
                     <div class="component-card">
-                        <div class="component-label">Tag / Small</div>
+                        <div class="component-label">Tag</div>
                         <div class="component-preview">
                             <span class="tag">Design Tokens</span>
                             <span class="tag">Architecture</span>
                             <span class="tag">Theming</span>
                         </div>
-                        <div class="component-code">.project-tag</div>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-label">Tag / Medium</div>
-                        <div class="component-preview">
-                            <span class="tag tag-medium">AI</span>
-                            <span class="tag tag-medium">Documentation</span>
-                        </div>
-                        <div class="component-code">.case-study-tag, .skill-badge</div>
+                        <div class="component-code">.project-tag, .case-study-tag, .skill-badge</div>
                     </div>
 
                     <!-- Card -->
@@ -1076,7 +1074,7 @@
                         </div>
                         <div class="token-row">
                             <span class="token-name">Focus Indicators</span>
-                            <span class="token-value">2px solid #0071e3</span>
+                            <span class="token-value">2px solid color.blue.500</span>
                             <span>Visible on all focusable elements</span>
                         </div>
                         <div class="token-row">

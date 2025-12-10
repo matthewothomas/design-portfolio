@@ -358,30 +358,32 @@
         .project-link {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            color: #0071e3;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            font-size: 15px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
             transition: all 0.2s;
-            padding: 8px 0;
+            padding: 10px 16px;
             min-height: 44px;
+            border-radius: 8px;
+            background: transparent;
         }
 
         .project-link:hover {
-            gap: 12px;
-            color: #005bb5;
+            background: #f5f5f7;
+            color: #1d1d1f;
         }
 
         .project-link:focus-visible {
             outline: 2px solid #0071e3;
-            outline-offset: 4px;
-            border-radius: 4px;
+            outline-offset: 2px;
+            border-radius: 8px;
         }
 
         .project-link:active {
-            color: #004a94;
+            background: #e8e8ed;
         }
 
         .project-link::after {
@@ -503,8 +505,8 @@
 
         .about-photo {
             width: 100%;
-            max-width: 500px;
-            margin: 32px auto;
+            max-width: 400px;
+            margin: 0 auto 32px;
             border-radius: 18px;
             overflow: hidden;
         }
@@ -971,7 +973,10 @@
         <section class="section" id="about" aria-labelledby="about-title">
             <div class="about-section">
                 <div class="about-content">
-                    <h2 id="about-title">About Me</h2>
+                    <h2 id="about-title" class="sr-only">About Me</h2>
+                    <div class="about-photo">
+                        <img src="thomas-family.jpeg" alt="Matthew with his family">
+                    </div>
                     <p>
                         When I'm not knee-deep in design tokens, you'll find me at music festivals discovering new DJs and bands, attempting to perfect my backhand on the tennis court, or convincing my son that watering tomatoes is genuinely exciting (it is).
                     </p>
@@ -981,9 +986,6 @@
                     <p>
                         Gardening has become my unexpected therapy. There's something satisfying about growing your own veg and teaching a little one that food doesn't just appear in the fridge. Muddy hands, proud moments.
                     </p>
-                    <div class="about-photo">
-                        <img src="thomas-family.jpeg" alt="Matthew with his family">
-                    </div>
                     <div class="skills-list" role="list" aria-label="Interests">
                         <span class="skill-badge" role="listitem">Family Adventures</span>
                         <span class="skill-badge" role="listitem">Festival Season</span>

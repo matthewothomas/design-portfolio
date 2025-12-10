@@ -396,12 +396,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 14px 28px;
             background: white;
             color: #1d1d1f;
             text-decoration: none;
             border-radius: 980px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             border: 1px solid #e5e5e5;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -413,25 +413,24 @@
             border-color: #d4d4d4;
         }
 
-        .btn-tertiary-icon {
+        .btn-plain {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            background: white;
-            color: #1d1d1f;
+            padding: 8px 0;
+            background: transparent;
+            color: #0071e3;
             text-decoration: none;
-            border-radius: 980px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: none;
             cursor: pointer;
         }
 
-        .btn-tertiary-icon:hover {
-            background: #fafafa;
-            border-color: #d4d4d4;
+        .btn-plain:hover {
+            color: #005bb5;
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         /* Tag Components */
@@ -845,42 +844,32 @@
                         <div class="token-row header">
                             <span>Token</span>
                             <span>Value</span>
-                            <span>Preview</span>
+                            <span>Usage</span>
                         </div>
                         <div class="token-row">
                             <span class="token-name">radius.sm</span>
-                            <span class="token-value">8px</span>
-                            <div class="token-preview">
-                                <div class="radius-block" style="border-radius: 8px; width: 48px; height: 48px;"></div>
-                            </div>
+                            <span class="token-value">10px</span>
+                            <span>Tags</span>
                         </div>
                         <div class="token-row">
                             <span class="token-name">radius.md</span>
                             <span class="token-value">12px</span>
-                            <div class="token-preview">
-                                <div class="radius-block" style="border-radius: 12px; width: 48px; height: 48px;"></div>
-                            </div>
+                            <span>Badges</span>
                         </div>
                         <div class="token-row">
                             <span class="token-name">radius.lg</span>
                             <span class="token-value">18px</span>
-                            <div class="token-preview">
-                                <div class="radius-block" style="border-radius: 18px; width: 48px; height: 48px;"></div>
-                            </div>
+                            <span>Testimonial cards, photos</span>
                         </div>
                         <div class="token-row">
                             <span class="token-name">radius.xl</span>
                             <span class="token-value">24px</span>
-                            <div class="token-preview">
-                                <div class="radius-block" style="border-radius: 24px; width: 48px; height: 48px;"></div>
-                            </div>
+                            <span>Project cards, sections</span>
                         </div>
                         <div class="token-row">
                             <span class="token-name">radius.full</span>
                             <span class="token-value">980px</span>
-                            <div class="token-preview">
-                                <div class="radius-block" style="border-radius: 980px; width: 80px; height: 40px;"></div>
-                            </div>
+                            <span>Buttons, pills</span>
                         </div>
                     </div>
                 </div>
@@ -888,7 +877,7 @@
                 <!-- Shadow Tokens -->
                 <div class="ds-subsection">
                     <h3 class="ds-subsection-title">Shadows</h3>
-                    <p class="ds-description">Elevation and depth for layered interfaces.</p>
+                    <p class="ds-description">Subtle elevation for interactive elements.</p>
                     
                     <div class="token-table">
                         <div class="token-row header">
@@ -901,13 +890,6 @@
                             <span class="token-value">0 1px 2px rgba(0,0,0,0.05)</span>
                             <div class="token-preview">
                                 <div style="width: 60px; height: 40px; background: white; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"></div>
-                            </div>
-                        </div>
-                        <div class="token-row">
-                            <span class="token-name">shadow.md</span>
-                            <span class="token-value">0 4px 20px rgba(0,0,0,0.08)</span>
-                            <div class="token-preview">
-                                <div style="width: 60px; height: 40px; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);"></div>
                             </div>
                         </div>
                     </div>
@@ -1002,9 +984,9 @@
                     </div>
 
                     <div class="component-card">
-                        <div class="component-label">Button / Tertiary + Icon</div>
+                        <div class="component-label">Button / Plain</div>
                         <div class="component-preview">
-                            <button class="btn-tertiary-icon">← Back to Portfolio</button>
+                            <button class="btn-plain">← Back to Portfolio</button>
                         </div>
                         <div class="component-code">.back-link</div>
                     </div>

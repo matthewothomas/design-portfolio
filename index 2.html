@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matthew Thomas - Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years building accessible, scalable systems.">
+    <title>Matthew Thomas - Design Systems & AI Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+            background: #fafafa;
+            color: #1d1d1f;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Skip link for keyboard users */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0071e3;
+            color: white;
+            padding: 8px 16px;
+            z-index: 10001;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus styles for all interactive elements */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 2px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #0071e3;
+        }
+
+        .nav-links a:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            min-height: 44px;
+            min-width: 44px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hamburger:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: #1d1d1f;
+            transition: all 0.3s;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .hamburger.active {
+            z-index: 10001;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #fafafa;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            z-index: 9999;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 32px;
+            font-weight: 600;
+            padding: 10px 20px;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a:focus {
+            color: #0071e3;
+        }
+
+        .hero {
+            padding: 120px 32px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            line-height: 1.05;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 24px);
+            color: #48484a;
+            font-weight: 500;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #0071e3;
+            color: white;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        .hero-cta:hover {
+            background: #005bb5;
+            transform: translateY(-1px);
+        }
+
+        .hero-cta:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 3px;
+        }
+
+        .hero-cta:active {
+            transform: translateY(0);
+            background: #004a94;
+        }
+
+        .hero-cta.dark {
+            background: #1d1d1f;
+        }
+
+        .hero-cta.dark:hover {
+            background: #3a3a3c;
+        }
+
+        .hero-cta.dark:active {
+            background: #000;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 32px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: #48484a;
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Green for Files.svg */
+        .project-image.consolidation {
+            background: #5ab88a;
+        }
+
+        /* Blue for Tokens.svg */
+        .project-image.tokens {
+            background: #5b7bef;
+        }
+
+        /* Purple for AI_documentation.svg */
+        .project-image.ai-docs {
+            background: #AB6FE9;
+        }
+
+        /* Yellow for AI_Agents.svg */
+        .project-image.ai-newsletter {
+            background: #F3AC3C;
+        }
+
+        /* Coral/Red for Vibe Coding */
+        .project-image.vibe-coding {
+            background: #E96F6F;
+        }
+
+        /* Dark for Design System */
+        .project-image.design-system {
+            background: #1d1d1f;
+        }
+
+        .project-content {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: nowrap;
+            overflow: hidden;
+        }
+
+        .project-tag {
+            font-size: 12px;
+            padding: 6px 12px;
+            background: #f5f5f7;
+            border-radius: 10px;
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #1d1d1f;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #48484a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            padding: 14px 28px;
+            min-height: 44px;
+            border-radius: 980px;
+            background: white;
+            border: 1px solid #e5e5e5;
+        }
+
+        .project-link:hover {
+            background: #fafafa;
+            border-color: #d4d4d4;
+        }
+
+        .project-link:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 2px;
+        }
+
+        .project-link:active {
+            background: #f5f5f5;
+        }
+
+        /* Remove the arrow */
+        .project-link::after {
+            display: none;
+        }
+
+        .testimonials-section {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 20px;
+        }
+
+        .testimonials-header {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .testimonials-subheader {
+            font-size: 16px;
+            color: #48484a;
+            margin-bottom: 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            position: relative;
+            padding: 32px;
+            background: #fafafa;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-quote {
+            width: 50px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card blockquote {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .testimonial-card footer {
+            margin-top: auto;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: #48484a;
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 32px;
+            border: 4px solid #f5f5f7;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 24px;
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .about-content p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .skill-badge {
+            padding: 6px 12px;
+            background: #f5f5f7;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 60px 32px;
+        }
+
+        .contact-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .contact-section p {
+            font-size: 20px;
+            color: #48484a;
+            margin-bottom: 32px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 14px 28px;
+            background: white;
+            color: #1d1d1f;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid #e5e5e5;
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        .contact-link:hover {
+            background: #fafafa;
+            border-color: #d4d4d4;
+        }
+
+        .contact-link:focus-visible {
+            outline: 2px solid #0071e3;
+            outline-offset: 3px;
+        }
+
+        .contact-link:active {
+            background: #f5f5f5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 32px;
+            color: #48484a;
+            font-size: 12px;
+        }
+
+        /* Visually hidden but accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 24px 40px;
+            }
+
+            .hero-subtitle {
+                margin-bottom: 32px;
+            }
+
+            .section {
+                padding: 40px 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 12px;
+            }
+
+            .section-subtitle {
+                margin-bottom: 32px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-content {
+                padding: 24px;
+            }
+
+            .project-title {
+                font-size: 22px;
+            }
+
+            .about-section {
+                padding: 32px 24px;
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-photo {
+                max-width: 280px;
+                margin: 0 auto;
+                position: static;
+            }
+
+            .testimonials-section {
+                padding: 32px 20px;
+                margin-bottom: 0;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 32px;
+            }
+
+            .testimonial-card {
+                padding: 24px 20px;
+            }
+
+            .testimonial-quote {
+                width: 40px;
+                margin-bottom: 12px;
+            }
+
+            .testimonial-text {
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .contact-section {
+                padding: 48px 24px;
+            }
+
+            .contact-section h2 {
+                font-size: 32px;
+            }
+
+            .contact-section p {
+                font-size: 18px;
+                margin-bottom: 28px;
+            }
+
+            .footer {
+                padding: 24px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in {
+                animation: none;
+            }
+            
+            * {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Matthew Thomas</a>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu" aria-hidden="true">
+        <a href="#work" class="mobile-link">Work</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- Main content -->
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="hero fade-in" aria-labelledby="hero-title">
+            <h1 id="hero-title" class="hero-title">Building design systems<br>that scale with AI</h1>
+            <p class="hero-subtitle">Senior Product Designer specialising in Design Systems and AI-assisted workflows. 8+ years helping teams build accessible, scalable systems.</p>
+            <a href="#work" class="hero-cta">View my work</a>
+            <a href="Matthew Thomas CV.pdf" class="hero-cta dark" style="margin-left: 12px;" download>Download CV</a>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" id="work" aria-labelledby="work-title">
+            <h2 id="work-title" class="section-title">Featured Work</h2>
+            <p class="section-subtitle">Design systems projects that transformed how teams work</p>
+
+            <div class="projects-grid">
+                <!-- Project 1: Component Library Consolidation -->
+                <article class="project-card">
+                    <div class="project-image consolidation">
+                        <img src="Files.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                        <span class="project-tag">Component Library</span>
+                        <span class="project-tag">Multi-platform</span>
+                        </div>
+                        <h3 class="project-title">Component Library Consolidation</h3>
+                        <p class="project-description">
+                            Unified 4 fragmented libraries into a single source of truth, eliminating 75% component duplication and establishing governance across web, iOS, Android, and email platforms.
+                        </p>
+                        <a href="case-study-consolidation.html" class="project-link">View Case Study<span class="sr-only">: Component Library Consolidation</span></a>
+                    </div>
+                </article>
+
+                <!-- Project 2: Token System -->
+                <article class="project-card">
+                    <div class="project-image tokens">
+                        <img src="Tokens.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Design Tokens</span>
+                            <span class="project-tag">Architecture</span>
+                            <span class="project-tag">Theming</span>
+                        </div>
+                        <h3 class="project-title">Token System Scaling</h3>
+                        <p class="project-description">
+                            Scaled token architecture from 30 app-specific tokens to 320+ cross-platform primitives and semantic tokens, enabling consistent design decisions across web, app, and email.
+                        </p>
+                        <a href="case-study-tokens.html" class="project-link">View Case Study<span class="sr-only">: Token System Scaling</span></a>
+                    </div>
+                </article>
+
+                <!-- Project 3: AI Documentation -->
+                <article class="project-card">
+                    <div class="project-image ai-docs">
+                        <img src="AI_documentation.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Documentation</span>
+                            <span class="project-tag">Zeroheight</span>
+                        </div>
+                        <h3 class="project-title">AI Documentation Automation</h3>
+                        <p class="project-description">
+                            Built an AI agent using Figma MCP and Claude to auto-generate Zeroheight component documentation, saving 160+ hours on documentation work across 50 components.
+                        </p>
+                        <a href="case-study-ai.html" class="project-link">View Case Study<span class="sr-only">: AI Documentation Automation</span></a>
+                    </div>
+                </article>
+
+                <!-- Project 4: AI Newsletter -->
+                <article class="project-card">
+                    <div class="project-image ai-newsletter">
+                        <img src="AI_Agents.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Newsletter</span>
+                            <span class="project-tag">Automation</span>
+                        </div>
+                        <h3 class="project-title">AI Newsletter Automation</h3>
+                        <p class="project-description">
+                            Created an AI agent that automatically generates monthly design system newsletters, summarising updates, new components, and changes—saving 5 hours per month.
+                        </p>
+                        <a href="case-study-newsletter.html" class="project-link">View Case Study<span class="sr-only">: AI Newsletter Automation</span></a>
+                    </div>
+                </article>
+
+                <!-- Project 5: Vibe Coding -->
+                <article class="project-card">
+                    <div class="project-image vibe-coding">
+                        <img src="VibeCode.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Vibe Coding</span>
+                            <span class="project-tag">Cursor</span>
+                            <span class="project-tag">AI Development</span>
+                        </div>
+                        <h3 class="project-title">Vibe Coding</h3>
+                        <p class="project-description">
+                            Vibe coded a redesigned Virgin Active homepage using Antigravity and Claude AI—exploring how AI-assisted development can rapidly produce polished, functional interfaces.
+                        </p>
+                        <a href="case-study-vibe.html" class="project-link">View Case Study<span class="sr-only">: Vibe Coding</span></a>
+                    </div>
+                </article>
+
+                <!-- Project 6: Design System -->
+                <article class="project-card">
+                    <div class="project-image design-system">
+                        <img src="my-portfolio.svg" alt="" role="presentation">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Design Tokens</span>
+                            <span class="project-tag">Components</span>
+                            <span class="project-tag">Typography</span>
+                        </div>
+                        <h3 class="project-title">Portfolio Design System</h3>
+                        <p class="project-description">
+                            The tokens, typography, and components used to build this portfolio—documented as a working design system with primitives and semantic tokens.
+                        </p>
+                        <a href="design-system.html" class="project-link">View Design System<span class="sr-only">: Portfolio Design System</span></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section" aria-labelledby="testimonials-title">
+            <div class="testimonials-section">
+                <h2 id="testimonials-title" class="testimonials-header">What People Say</h2>
+                <p class="testimonials-subheader">From colleagues, managers, and collaborators</p>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <img src="speech1.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "His attention to detail, problem-solving skills, and dedication to producing user-centered designs are helping the squad to consistently do the best we can for our customers. His commitment to intuitive and appealing designs enhances the user experience, positively impacting our projects."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Anonymous</cite>
+                                <p class="testimonial-role">Bupa</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <img src="speech2.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "I worked closely with Matt for a couple of years on a number of strategic projects and I'd highly recommend working with him. He thinks carefully about problems, is curious and asks important questions, has a strong attention to detail and is highly collaborative, adapting his style to different stakeholders."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Lizzie Hedges</cite>
+                                <p class="testimonial-role">Senior Product Designer, Money Saving Expert</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <img src="speech3.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "Matt is a super talented designer who has an integrated skillset. He is able to approach and deliver on a multitude of projects, from branding to UI, and traditional advertising. He engages with feedback, works hard to field a variety of options, and crafts to a high polish."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Dom Butler</cite>
+                                <p class="testimonial-role">Senior Creative, McCann London</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <img src="speech4.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "Working with him is a pleasure: he's a safe space to vent when things are frustrating, yet while we feel able to be honest about when things aren't going well, Matt also doesn't dwell on negatives — he keeps things moving in a positive direction."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Anonymous</cite>
+                                <p class="testimonial-role">Bupa</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <img src="speech1.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "Matthew is a highly skilled award winning designer with a strong leaning to all things digital. UI and UX are fast becoming his strong suit."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Dan Howarth</cite>
+                                <p class="testimonial-role">Head of Design, McCann London</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <img src="speech2.svg" alt="" class="testimonial-quote" role="presentation">
+                        <blockquote>
+                            <p class="testimonial-text">
+                                "Matthew has a fantastic presence in the studio. His eagerness to learn and to develop his current skills and his current creative flair mixed with a happy, upbeat personality makes it a joy to work with him."
+                            </p>
+                            <footer>
+                                <cite class="testimonial-author">Tom Budden</cite>
+                                <p class="testimonial-role">Senior Designer, Grey</p>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="about-section">
+                <div class="about-photo">
+                    <img src="thomas-family.jpeg" alt="Matthew with his family">
+                </div>
+                <div class="about-content">
+                    <h2 id="about-title" class="sr-only">About Me</h2>
+                    <p>
+                        When I'm not knee-deep in design tokens, you'll find me at music festivals discovering new DJs and bands, attempting to perfect my backhand on the tennis court, or convincing my son that watering tomatoes is genuinely exciting (it is).
+                    </p>
+                    <p>
+                        I'm big on balance—gym sessions, eating things that are actually green, and protecting my headspace. We love travelling as a family—Bali was incredible—and we're already planning our next adventure.
+                    </p>
+                    <p>
+                        Gardening has become my unexpected therapy. There's something satisfying about growing your own veg and teaching a little one that food doesn't just appear in the fridge. Muddy hands, proud moments.
+                    </p>
+                    <div class="skills-list" role="list" aria-label="Interests">
+                        <span class="skill-badge" role="listitem">Family Adventures</span>
+                        <span class="skill-badge" role="listitem">Festival Season</span>
+                        <span class="skill-badge" role="listitem">Live Music</span>
+                        <span class="skill-badge" role="listitem">Tennis</span>
+                        <span class="skill-badge" role="listitem">Gym & Wellness</span>
+                        <span class="skill-badge" role="listitem">Gardening</span>
+                        <span class="skill-badge" role="listitem">Travel</span>
+                        <span class="skill-badge" role="listitem">Growing Veg</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact-section" id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Let's Work Together</h2>
+            <p>Available for full-time roles in Design Systems and AI</p>
+            <div class="contact-links">
+                <a href="mailto:matthewothomas@me.com" class="contact-link">Email Me</a>
+                <a href="tel:07450292996" class="contact-link">Call Me</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Matthew Thomas. All rights reserved. | Crouch End, London</p>
+    </footer>
+
+    <script>
+        var hamburger = document.querySelector('.hamburger');
+        var mobileMenu = document.getElementById('mobileMenu');
+        var mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', function() {
+            var isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            hamburger.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
+            mobileMenu.setAttribute('aria-hidden', isExpanded);
+            
+            // Trap focus in mobile menu when open
+            if (!isExpanded) {
+                mobileLinks[0].focus();
+            }
+        });
+
+        mobileLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open menu');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+            });
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open menu');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                hamburger.focus();
+            }
+        });
+    </script>
+</body>
+</html>

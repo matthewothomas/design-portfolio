@@ -472,10 +472,13 @@
         .about-section {
             background: white;
             border-radius: 24px;
-            padding: 64px 48px;
-            text-align: center;
-            max-width: 800px;
+            padding: 48px;
+            max-width: 1000px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 48px;
+            align-items: start;
         }
 
         .about-image {
@@ -493,41 +496,38 @@
             object-fit: cover;
         }
 
-        .about-content h2 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 24px;
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .about-content p {
             font-size: 16px;
             line-height: 1.7;
             color: #1d1d1f;
-            margin-bottom: 24px;
-            text-align: left;
+            margin-bottom: 20px;
         }
 
-        .about-photo {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 32px;
-            border-radius: 24px;
-            overflow: hidden;
-        }
-
-        .about-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .about-content p:last-of-type {
+            margin-bottom: 0;
         }
 
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 32px;
+            gap: 8px;
+            margin-top: 24px;
         }
 
         .skill-badge {
@@ -656,21 +656,15 @@
             }
 
             .about-section {
-                padding: 40px 24px;
+                padding: 32px 24px;
+                grid-template-columns: 1fr;
+                gap: 32px;
             }
 
-            .about-image {
-                width: 100px;
-                height: 100px;
-                margin-bottom: 24px;
-            }
-
-            .about-content h2 {
-                font-size: 28px;
-            }
-
-            .about-content p {
-                text-align: center;
+            .about-photo {
+                max-width: 280px;
+                margin: 0 auto;
+                position: static;
             }
 
             .testimonials-section {
@@ -993,11 +987,11 @@
         <!-- About -->
         <section class="section" id="about" aria-labelledby="about-title">
             <div class="about-section">
+                <div class="about-photo">
+                    <img src="thomas-family.jpeg" alt="Matthew with his family">
+                </div>
                 <div class="about-content">
                     <h2 id="about-title" class="sr-only">About Me</h2>
-                    <div class="about-photo">
-                        <img src="thomas-family.jpeg" alt="Matthew with his family">
-                    </div>
                     <p>
                         When I'm not knee-deep in design tokens, you'll find me at music festivals discovering new DJs and bands, attempting to perfect my backhand on the tennis court, or convincing my son that watering tomatoes is genuinely exciting (it is).
                     </p>
